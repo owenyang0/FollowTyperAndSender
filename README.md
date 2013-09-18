@@ -73,9 +73,9 @@ the hot key can change by yourself.
 软件界面
 -------
 跟打器主文件**FollowTyper.exe**  
-![FollowTyper.exe](\rsc\跟打器主界面截图.jpg)  
+![FollowTyper.exe](\rsc/跟打器主界面截图.jpg)  
 跟打历史文件**TypeHistory.exe**  
-![TypeHistory.exe](\rsc\跟打历史截图.jpg)
+![TypeHistory.exe](\rsc/跟打历史截图.jpg)
 
 
 ---------------------------
