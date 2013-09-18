@@ -46,6 +46,7 @@
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.labAllCount = new System.Windows.Forms.ToolStripStatusLabel();
             this.labAllWords = new System.Windows.Forms.ToolStripStatusLabel();
+            this.daySpeed = new System.Windows.Forms.ToolStripStatusLabel();
             this.dayWords = new System.Windows.Forms.ToolStripStatusLabel();
             this.todayWords = new System.Windows.Forms.ToolStripStatusLabel();
             this.labkeyCount = new System.Windows.Forms.ToolStripStatusLabel();
@@ -56,7 +57,6 @@
             this.labBestHit = new System.Windows.Forms.ToolStripStatusLabel();
             this.labbestWordsLength = new System.Windows.Forms.ToolStripStatusLabel();
             this.labStaticTime = new System.Windows.Forms.ToolStripStatusLabel();
-            this.daySpeed = new System.Windows.Forms.ToolStripStatusLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGrades)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
@@ -86,7 +86,7 @@
             this.dgvGrades.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dgvGrades.RowTemplate.Height = 23;
             this.dgvGrades.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvGrades.Size = new System.Drawing.Size(691, 325);
+            this.dgvGrades.Size = new System.Drawing.Size(691, 352);
             this.dgvGrades.TabIndex = 26;
             this.dgvGrades.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvGrades_RowsAdded);
             // 
@@ -118,13 +118,13 @@
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridView1.Location = new System.Drawing.Point(84, 60);
+            this.dataGridView1.Location = new System.Drawing.Point(84, 65);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToDisplayedHeaders;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(105, 145);
+            this.dataGridView1.Size = new System.Drawing.Size(105, 157);
             this.dataGridView1.TabIndex = 30;
             // 
             // dataGridViewTextBoxColumn1
@@ -196,7 +196,7 @@
             this.dataGridViewTextBoxColumn7.MinimumWidth = 50;
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
-            this.dataGridViewTextBoxColumn7.Width = 54;
+            this.dataGridViewTextBoxColumn7.Width = 56;
             // 
             // dataGridViewTextBoxColumn8
             // 
@@ -242,9 +242,9 @@
             this.labBestHit,
             this.labbestWordsLength,
             this.labStaticTime});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 299);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 328);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(691, 26);
+            this.statusStrip1.Size = new System.Drawing.Size(691, 24);
             this.statusStrip1.TabIndex = 32;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -257,7 +257,7 @@
             this.labAllCount.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.labAllCount.ForeColor = System.Drawing.Color.Maroon;
             this.labAllCount.Name = "labAllCount";
-            this.labAllCount.Size = new System.Drawing.Size(48, 21);
+            this.labAllCount.Size = new System.Drawing.Size(50, 19);
             this.labAllCount.Text = "总数：";
             // 
             // labAllWords
@@ -268,8 +268,20 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.labAllWords.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.labAllWords.Name = "labAllWords";
-            this.labAllWords.Size = new System.Drawing.Size(60, 21);
+            this.labAllWords.Size = new System.Drawing.Size(63, 19);
             this.labAllWords.Text = "总字数：";
+            // 
+            // daySpeed
+            // 
+            this.daySpeed.BackColor = System.Drawing.SystemColors.ButtonShadow;
+            this.daySpeed.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
+                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.daySpeed.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
+            this.daySpeed.ForeColor = System.Drawing.Color.Maroon;
+            this.daySpeed.Name = "daySpeed";
+            this.daySpeed.Size = new System.Drawing.Size(76, 19);
+            this.daySpeed.Text = "日均速度：";
             // 
             // dayWords
             // 
@@ -280,7 +292,7 @@
             this.dayWords.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.dayWords.ForeColor = System.Drawing.Color.Maroon;
             this.dayWords.Name = "dayWords";
-            this.dayWords.Size = new System.Drawing.Size(72, 21);
+            this.dayWords.Size = new System.Drawing.Size(76, 19);
             this.dayWords.Text = "日均字数：";
             // 
             // todayWords
@@ -291,7 +303,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.todayWords.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.todayWords.Name = "todayWords";
-            this.todayWords.Size = new System.Drawing.Size(72, 21);
+            this.todayWords.Size = new System.Drawing.Size(76, 19);
             this.todayWords.Text = "今日字数：";
             // 
             // labkeyCount
@@ -303,7 +315,7 @@
             this.labkeyCount.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.labkeyCount.ForeColor = System.Drawing.Color.DarkRed;
             this.labkeyCount.Name = "labkeyCount";
-            this.labkeyCount.Size = new System.Drawing.Size(60, 21);
+            this.labkeyCount.Size = new System.Drawing.Size(63, 19);
             this.labkeyCount.Text = "总键数：";
             // 
             // labAverageSpeed
@@ -315,7 +327,7 @@
             this.labAverageSpeed.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.labAverageSpeed.ForeColor = System.Drawing.Color.Black;
             this.labAverageSpeed.Name = "labAverageSpeed";
-            this.labAverageSpeed.Size = new System.Drawing.Size(72, 21);
+            this.labAverageSpeed.Size = new System.Drawing.Size(76, 19);
             this.labAverageSpeed.Text = "平均速度：";
             // 
             // labAverageHitKeys
@@ -326,7 +338,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.labAverageHitKeys.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.labAverageHitKeys.Name = "labAverageHitKeys";
-            this.labAverageHitKeys.Size = new System.Drawing.Size(72, 21);
+            this.labAverageHitKeys.Size = new System.Drawing.Size(76, 19);
             this.labAverageHitKeys.Text = "平均击键：";
             // 
             // labAverageWorkdsLength
@@ -338,7 +350,7 @@
             this.labAverageWorkdsLength.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.labAverageWorkdsLength.ForeColor = System.Drawing.Color.DarkRed;
             this.labAverageWorkdsLength.Name = "labAverageWorkdsLength";
-            this.labAverageWorkdsLength.Size = new System.Drawing.Size(72, 21);
+            this.labAverageWorkdsLength.Size = new System.Drawing.Size(76, 19);
             this.labAverageWorkdsLength.Text = "平均码长：";
             // 
             // labTopSpeed
@@ -349,7 +361,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.labTopSpeed.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.labTopSpeed.Name = "labTopSpeed";
-            this.labTopSpeed.Size = new System.Drawing.Size(72, 21);
+            this.labTopSpeed.Size = new System.Drawing.Size(76, 19);
             this.labTopSpeed.Text = "最高速度：";
             // 
             // labBestHit
@@ -361,7 +373,7 @@
             this.labBestHit.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.labBestHit.ForeColor = System.Drawing.Color.DarkRed;
             this.labBestHit.Name = "labBestHit";
-            this.labBestHit.Size = new System.Drawing.Size(72, 21);
+            this.labBestHit.Size = new System.Drawing.Size(76, 19);
             this.labBestHit.Text = "最佳击键：";
             // 
             // labbestWordsLength
@@ -372,7 +384,7 @@
                         | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.labbestWordsLength.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.labbestWordsLength.Name = "labbestWordsLength";
-            this.labbestWordsLength.Size = new System.Drawing.Size(72, 21);
+            this.labbestWordsLength.Size = new System.Drawing.Size(76, 19);
             this.labbestWordsLength.Text = "最佳码长：";
             // 
             // labStaticTime
@@ -384,26 +396,14 @@
             this.labStaticTime.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.labStaticTime.ForeColor = System.Drawing.Color.DarkRed;
             this.labStaticTime.Name = "labStaticTime";
-            this.labStaticTime.Size = new System.Drawing.Size(72, 21);
+            this.labStaticTime.Size = new System.Drawing.Size(76, 19);
             this.labStaticTime.Text = "统计时间：";
-            // 
-            // daySpeed
-            // 
-            this.daySpeed.BackColor = System.Drawing.SystemColors.ButtonShadow;
-            this.daySpeed.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
-            this.daySpeed.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
-            this.daySpeed.ForeColor = System.Drawing.Color.Maroon;
-            this.daySpeed.Name = "daySpeed";
-            this.daySpeed.Size = new System.Drawing.Size(72, 21);
-            this.daySpeed.Text = "日均速度：";
             // 
             // TypeHis
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(691, 325);
+            this.ClientSize = new System.Drawing.Size(691, 352);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dgvGrades);
             this.Controls.Add(this.dataGridView1);

@@ -1,8 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FollowTyper", "WinCusSkin\FollowTyper.csproj", "{F16E450C-6C0C-4A21-8E92-3797281F8C51}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FollowTyper", "Typer\FollowTyper.csproj", "{F16E450C-6C0C-4A21-8E92-3797281F8C51}"
 	ProjectSection(ProjectDependencies) = postProject
+		{C77AD651-B081-45FD-BC49-8886AB1843D5} = {C77AD651-B081-45FD-BC49-8886AB1843D5}
 		{6246C852-2FF2-4769-9ADE-ED0649194D7E} = {6246C852-2FF2-4769-9ADE-ED0649194D7E}
 	EndProjectSection
 EndProject
