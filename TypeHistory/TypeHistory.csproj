@@ -125,7 +125,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="303.ico" />
     <Content Include="typerhis.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
