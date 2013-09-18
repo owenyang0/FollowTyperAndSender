@@ -13,7 +13,7 @@ namespace SqlGrades
             int wrordscount, int keycount, string time)
         {
             string P_Connection = string.Format(//创建数据库连接字符串
-              "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang");
+              "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=../rsc/Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang");
             OleDbConnection P_OLEDBConnection = //创建连接对象
                 new OleDbConnection(P_Connection);
             P_OLEDBConnection.Open();//连接到数据库
@@ -28,7 +28,7 @@ namespace SqlGrades
         public void Delete(string strCommand)//date, string para, string speed, string back)
         {
             string P_Connection = string.Format(//创建数据库连接字符串
-              "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang");
+              "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=../src/Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang");
             OleDbConnection P_OLEDBConnection = //创建连接对象
                 new OleDbConnection(P_Connection);//ID=1 and 
             P_OLEDBConnection.Open();//连接到数据库
@@ -43,7 +43,7 @@ namespace SqlGrades
         public string command(string order)
         {
             string P_Connection = string.Format(//创建数据库连接字符串
-             "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang"); 
+             "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=../rsc/Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang"); 
             OleDbConnection P_OLEDBConnection = //创建连接对象
                 new OleDbConnection(P_Connection);
             P_OLEDBConnection.Open();//连接到数据库            
@@ -64,7 +64,7 @@ namespace SqlGrades
        public List<task> Select()
        {
            string P_Connection = string.Format(//创建数据库连接字符串
-            "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang"); 
+            "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=../rsc/Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang"); 
            OleDbConnection P_OLEDBConnection = //创建连接对象
                new OleDbConnection(P_Connection);
            P_OLEDBConnection.Open();//连接到数据库     select Format(now(), 'yyyy-mm-dd')       

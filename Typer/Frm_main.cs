@@ -872,28 +872,27 @@ namespace FollowTyper
                            // labelInfo.Text = "成绩格式：英文" ;
                             labWords.Text = "Today:" + _todayWordsCount + " Total:" + _ToatlWordsCount;
                         }
-                        //MessageBox.Show(DateTime.Now.ToString());
-                        //System.Threading.ThreadPool.QueueUserWorkItem(o =>
-                        //{
-                        //    if (dsped > 4)
-                        //    {                               
-                        //        Invoke(new Action(() =>
-                        //        {
-                        //            new GradesHis().Add(//向数据库中添加任务  
-                        //         DateTime.Now.ToString(),
-                        //         lablePara.Text,
-                        //        double.Parse(spd),
-                        //        back,
-                        //        double.Parse(string.Format("{0:0.00}", num10)),
-                        //         double.Parse(string.Format("{0:0.00}", num8)),
-                        //         wrongWord,
-                        //         actLen,
-                        //         pressCount,
-                        //         num12 + ":" + string.Format("{0:0.00}", countCost)
-                        //         );
-                        //        }));
-                        //    }
-                        //});
+                        System.Threading.ThreadPool.QueueUserWorkItem(o =>
+                        {
+                            if (dsped > 4)
+                            {
+                                Invoke(new Action(() =>
+                                {
+                                    new GradesHis().Add(//向数据库中添加任务  
+                                 DateTime.Now.ToString(),
+                                 lablePara.Text,
+                                double.Parse(spd),
+                                back,
+                                double.Parse(string.Format("{0:0.00}", num10)),
+                                 double.Parse(string.Format("{0:0.00}", num8)),
+                                 wrongWord,
+                                 actLen,
+                                 pressCount,
+                                 num12 + ":" + string.Format("{0:0.00}", countCost)
+                                 );
+                                }));
+                            }
+                        });
                         System.Threading.ThreadPool.QueueUserWorkItem(o =>
                         {
                             if (sendafterType)

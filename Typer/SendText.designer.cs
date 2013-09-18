@@ -76,9 +76,9 @@
             this.groupBox4.Controls.Add(this.tbxSendNO);
             this.groupBox4.Controls.Add(this.tbxParaNO);
             this.groupBox4.ForeColor = System.Drawing.Color.Navy;
-            this.groupBox4.Location = new System.Drawing.Point(265, 28);
+            this.groupBox4.Location = new System.Drawing.Point(265, 30);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(104, 124);
+            this.groupBox4.Size = new System.Drawing.Size(104, 134);
             this.groupBox4.TabIndex = 22;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "设定框";
@@ -86,9 +86,9 @@
             // labAllPara
             // 
             this.labAllPara.AutoSize = true;
-            this.labAllPara.Location = new System.Drawing.Point(68, 95);
+            this.labAllPara.Location = new System.Drawing.Point(68, 103);
             this.labAllPara.Name = "labAllPara";
-            this.labAllPara.Size = new System.Drawing.Size(11, 12);
+            this.labAllPara.Size = new System.Drawing.Size(13, 13);
             this.labAllPara.TabIndex = 10;
             this.labAllPara.Text = "0";
             // 
@@ -96,9 +96,9 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.Purple;
-            this.label5.Location = new System.Drawing.Point(12, 95);
+            this.label5.Location = new System.Drawing.Point(12, 103);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
+            this.label5.Size = new System.Drawing.Size(43, 13);
             this.label5.TabIndex = 9;
             this.label5.Text = "总段数";
             // 
@@ -107,7 +107,7 @@
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label4.ForeColor = System.Drawing.Color.Purple;
-            this.label4.Location = new System.Drawing.Point(7, 69);
+            this.label4.Location = new System.Drawing.Point(7, 75);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 8;
@@ -118,7 +118,7 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label3.ForeColor = System.Drawing.Color.Purple;
-            this.label3.Location = new System.Drawing.Point(7, 41);
+            this.label3.Location = new System.Drawing.Point(7, 44);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 7;
@@ -127,9 +127,9 @@
             // tbxSendNO
             // 
             this.tbxSendNO.ForeColor = System.Drawing.Color.Maroon;
-            this.tbxSendNO.Location = new System.Drawing.Point(62, 38);
+            this.tbxSendNO.Location = new System.Drawing.Point(62, 41);
             this.tbxSendNO.Name = "tbxSendNO";
-            this.tbxSendNO.Size = new System.Drawing.Size(34, 21);
+            this.tbxSendNO.Size = new System.Drawing.Size(34, 20);
             this.tbxSendNO.TabIndex = 4;
             this.tbxSendNO.Text = "100";
             this.tbxSendNO.TextChanged += new System.EventHandler(this.tbxSendNO_TextChanged);
@@ -137,9 +137,9 @@
             // 
             // tbxParaNO
             // 
-            this.tbxParaNO.Location = new System.Drawing.Point(62, 66);
+            this.tbxParaNO.Location = new System.Drawing.Point(62, 72);
             this.tbxParaNO.Name = "tbxParaNO";
-            this.tbxParaNO.Size = new System.Drawing.Size(34, 21);
+            this.tbxParaNO.Size = new System.Drawing.Size(34, 20);
             this.tbxParaNO.TabIndex = 6;
             this.tbxParaNO.Text = "1";
             this.tbxParaNO.Leave += new System.EventHandler(this.tbxParaNO_Leave);
@@ -148,9 +148,9 @@
             // 
             this.groupBox1.Controls.Add(this.richbxText);
             this.groupBox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.groupBox1.Location = new System.Drawing.Point(7, 28);
+            this.groupBox1.Location = new System.Drawing.Point(7, 30);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(252, 124);
+            this.groupBox1.Size = new System.Drawing.Size(252, 134);
             this.groupBox1.TabIndex = 19;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "文本内容";
@@ -159,11 +159,11 @@
             // 
             this.richbxText.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.richbxText.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richbxText.Location = new System.Drawing.Point(6, 20);
+            this.richbxText.Location = new System.Drawing.Point(6, 22);
             this.richbxText.Name = "richbxText";
             this.richbxText.ReadOnly = true;
             this.richbxText.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.ForcedVertical;
-            this.richbxText.Size = new System.Drawing.Size(240, 98);
+            this.richbxText.Size = new System.Drawing.Size(240, 106);
             this.richbxText.TabIndex = 0;
             this.richbxText.Text = "";
             // 
@@ -181,18 +181,18 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.btnAuto);
-            this.groupBox2.Location = new System.Drawing.Point(7, 158);
+            this.groupBox2.Location = new System.Drawing.Point(7, 171);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(362, 88);
+            this.groupBox2.Size = new System.Drawing.Size(362, 95);
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "半自动发送";
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(243, 25);
+            this.btnSend.Location = new System.Drawing.Point(243, 27);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(54, 23);
+            this.btnSend.Size = new System.Drawing.Size(54, 25);
             this.btnSend.TabIndex = 10;
             this.btnSend.Text = "发送";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -200,9 +200,9 @@
             // 
             // btnLastSen
             // 
-            this.btnLastSen.Location = new System.Drawing.Point(303, 25);
+            this.btnLastSen.Location = new System.Drawing.Point(303, 27);
             this.btnLastSen.Name = "btnLastSen";
-            this.btnLastSen.Size = new System.Drawing.Size(54, 23);
+            this.btnLastSen.Size = new System.Drawing.Size(54, 25);
             this.btnLastSen.TabIndex = 9;
             this.btnLastSen.Text = "上一段";
             this.btnLastSen.UseVisualStyleBackColor = true;
@@ -210,9 +210,9 @@
             // 
             // btnStop
             // 
-            this.btnStop.Location = new System.Drawing.Point(303, 57);
+            this.btnStop.Location = new System.Drawing.Point(303, 62);
             this.btnStop.Name = "btnStop";
-            this.btnStop.Size = new System.Drawing.Size(54, 23);
+            this.btnStop.Size = new System.Drawing.Size(54, 25);
             this.btnStop.TabIndex = 8;
             this.btnStop.Text = "停止";
             this.btnStop.UseVisualStyleBackColor = true;
@@ -225,9 +225,9 @@
             0,
             0,
             0});
-            this.numericUpDown1.Location = new System.Drawing.Point(109, 27);
+            this.numericUpDown1.Location = new System.Drawing.Point(109, 29);
             this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(120, 21);
+            this.numericUpDown1.Size = new System.Drawing.Size(120, 20);
             this.numericUpDown1.TabIndex = 7;
             this.numericUpDown1.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
@@ -235,35 +235,35 @@
             // 
             this.lableTimelast.AutoSize = true;
             this.lableTimelast.ForeColor = System.Drawing.Color.Maroon;
-            this.lableTimelast.Location = new System.Drawing.Point(142, 62);
+            this.lableTimelast.Location = new System.Drawing.Point(142, 67);
             this.lableTimelast.Name = "lableTimelast";
-            this.lableTimelast.Size = new System.Drawing.Size(89, 12);
+            this.lableTimelast.Size = new System.Drawing.Size(91, 13);
             this.lableTimelast.TabIndex = 5;
             this.lableTimelast.Text = "剩余时间（秒）";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 62);
+            this.label2.Location = new System.Drawing.Point(11, 67);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(137, 12);
+            this.label2.Size = new System.Drawing.Size(139, 13);
             this.label2.TabIndex = 4;
             this.label2.Text = "距下次发文时间（秒）：";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 30);
+            this.label1.Location = new System.Drawing.Point(11, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(89, 12);
+            this.label1.Size = new System.Drawing.Size(91, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "发文周期（秒）";
             // 
             // btnAuto
             // 
-            this.btnAuto.Location = new System.Drawing.Point(243, 57);
+            this.btnAuto.Location = new System.Drawing.Point(243, 62);
             this.btnAuto.Name = "btnAuto";
-            this.btnAuto.Size = new System.Drawing.Size(54, 23);
+            this.btnAuto.Size = new System.Drawing.Size(54, 25);
             this.btnAuto.TabIndex = 1;
             this.btnAuto.Text = "半自动";
             this.btnAuto.UseVisualStyleBackColor = true;
@@ -284,18 +284,18 @@
             this.groupBox3.Controls.Add(this.cbxFrom);
             this.groupBox3.Controls.Add(this.rdoParaph);
             this.groupBox3.Controls.Add(this.rdoSingle);
-            this.groupBox3.Location = new System.Drawing.Point(7, 252);
+            this.groupBox3.Location = new System.Drawing.Point(7, 273);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(362, 43);
+            this.groupBox3.Size = new System.Drawing.Size(362, 47);
             this.groupBox3.TabIndex = 9;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "发送选项";
             // 
             // btnGetForm
             // 
-            this.btnGetForm.Location = new System.Drawing.Point(279, 17);
+            this.btnGetForm.Location = new System.Drawing.Point(279, 18);
             this.btnGetForm.Name = "btnGetForm";
-            this.btnGetForm.Size = new System.Drawing.Size(78, 23);
+            this.btnGetForm.Size = new System.Drawing.Size(78, 25);
             this.btnGetForm.TabIndex = 11;
             this.btnGetForm.Text = "获取窗口";
             this.btnGetForm.UseVisualStyleBackColor = true;
@@ -305,18 +305,18 @@
             // 
             this.cbxFrom.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbxFrom.FormattingEnabled = true;
-            this.cbxFrom.Location = new System.Drawing.Point(144, 19);
+            this.cbxFrom.Location = new System.Drawing.Point(144, 21);
             this.cbxFrom.Name = "cbxFrom";
-            this.cbxFrom.Size = new System.Drawing.Size(129, 20);
+            this.cbxFrom.Size = new System.Drawing.Size(129, 21);
             this.cbxFrom.TabIndex = 2;
             // 
             // rdoParaph
             // 
             this.rdoParaph.AutoSize = true;
             this.rdoParaph.Checked = true;
-            this.rdoParaph.Location = new System.Drawing.Point(77, 20);
+            this.rdoParaph.Location = new System.Drawing.Point(77, 22);
             this.rdoParaph.Name = "rdoParaph";
-            this.rdoParaph.Size = new System.Drawing.Size(47, 16);
+            this.rdoParaph.Size = new System.Drawing.Size(49, 17);
             this.rdoParaph.TabIndex = 1;
             this.rdoParaph.TabStop = true;
             this.rdoParaph.Text = "文段";
@@ -325,9 +325,9 @@
             // rdoSingle
             // 
             this.rdoSingle.AutoSize = true;
-            this.rdoSingle.Location = new System.Drawing.Point(13, 20);
+            this.rdoSingle.Location = new System.Drawing.Point(13, 22);
             this.rdoSingle.Name = "rdoSingle";
-            this.rdoSingle.Size = new System.Drawing.Size(47, 16);
+            this.rdoSingle.Size = new System.Drawing.Size(49, 17);
             this.rdoSingle.TabIndex = 0;
             this.rdoSingle.Text = "单字";
             this.rdoSingle.UseVisualStyleBackColor = true;
@@ -337,7 +337,7 @@
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label6.ForeColor = System.Drawing.Color.Purple;
-            this.label6.Location = new System.Drawing.Point(5, 309);
+            this.label6.Location = new System.Drawing.Point(5, 335);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 11;
@@ -345,9 +345,9 @@
             // 
             // tbxAdvise
             // 
-            this.tbxAdvise.Location = new System.Drawing.Point(64, 303);
+            this.tbxAdvise.Location = new System.Drawing.Point(64, 328);
             this.tbxAdvise.Name = "tbxAdvise";
-            this.tbxAdvise.Size = new System.Drawing.Size(305, 21);
+            this.tbxAdvise.Size = new System.Drawing.Size(305, 20);
             this.tbxAdvise.TabIndex = 2;
             // 
             // tbxTitle
@@ -355,14 +355,14 @@
             this.tbxTitle.BackColor = System.Drawing.Color.LightGray;
             this.tbxTitle.Location = new System.Drawing.Point(7, 3);
             this.tbxTitle.Name = "tbxTitle";
-            this.tbxTitle.Size = new System.Drawing.Size(252, 21);
+            this.tbxTitle.Size = new System.Drawing.Size(252, 20);
             this.tbxTitle.TabIndex = 26;
             // 
             // btnOpen
             // 
             this.btnOpen.Location = new System.Drawing.Point(265, 3);
             this.btnOpen.Name = "btnOpen";
-            this.btnOpen.Size = new System.Drawing.Size(104, 23);
+            this.btnOpen.Size = new System.Drawing.Size(104, 25);
             this.btnOpen.TabIndex = 27;
             this.btnOpen.Text = "打开文件 ";
             this.btnOpen.UseVisualStyleBackColor = true;
@@ -370,10 +370,10 @@
             // 
             // SendText
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(376, 333);
+            this.ClientSize = new System.Drawing.Size(376, 361);
             this.Controls.Add(this.btnOpen);
             this.Controls.Add(this.tbxTitle);
             this.Controls.Add(this.label6);

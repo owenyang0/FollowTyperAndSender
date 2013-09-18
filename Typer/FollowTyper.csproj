@@ -19,6 +19,7 @@
     <TargetFrameworkProfile />
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>ftp://180.178.58.46/typer/</PublishUrl>
+    <PublishUrl>ftp://180.178.58.46/</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
     <UpdateEnabled>true</UpdateEnabled>
@@ -53,6 +54,7 @@
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -60,6 +62,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>tumbrl.ico</ApplicationIcon>
+    <ApplicationIcon>mainicon.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>780F8315690AA250B339A2FCB87BC3B5BF4C48B2</ManifestCertificateThumbprint>
@@ -201,6 +204,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="tumbrl.ico" />
+    <Content Include="mainicon.ico" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
