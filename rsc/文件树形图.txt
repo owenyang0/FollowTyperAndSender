@@ -1,0 +1,31 @@
+文件树形图
+│  .gitattributes
+│  .gitignore
+│  README.md
+│  tree.txt
+│  跟打相关－新.sln
+│  
+├─bin  //最终应用生成文件夹
+│      
+├─rsc  资源文件夹
+│      Grades.mdb
+│      mainicon.ico
+│      typerhis.ico
+│      跟打历史截图.jpg
+│      跟打历史截图.png
+│      跟打器主界面截图.jpg
+│      
+├─Tools  //删除测试成绩小工具
+│          
+├─TypeHistory //跟打成绩历史
+│          
+├─Typer //跟打器主文件
+│  │
+│  └─Resources // txt资源文件
+│          
+├─UpGrade //检查软件更新代码
+│          
+├─Win32 //操作WINDOWS API
+│      
+└─数据库操作
+            

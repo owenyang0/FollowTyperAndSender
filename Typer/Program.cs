@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Tools
+namespace FollowTyper
 {
     static class Program
     {
@@ -15,7 +15,8 @@ namespace Tools
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+          Application.Run(new FollowTyperc());
+          // Application.Run(new TypeHis());
         }
     }
 }
