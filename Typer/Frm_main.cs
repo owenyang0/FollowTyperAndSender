@@ -14,7 +14,7 @@ using System.Threading;
 using IWshRuntimeLibrary;
 using System.Runtime.InteropServices;
 using SqlGrades;
-using UpGrade;
+using AutoUpdate;
 using Win32;
 
 namespace FollowTyper

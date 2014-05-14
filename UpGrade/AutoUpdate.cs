@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace UpGrade
+namespace AutoUpdate
 {
     /// <summary>
     /// 更新完成触发的事件
