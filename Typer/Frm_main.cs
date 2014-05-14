@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.IO;
 using System.Threading;
 using IWshRuntimeLibrary;
-using System.Runtime .InteropServices ;
+using System.Runtime.InteropServices;
 using SqlGrades;
 using UpGrade;
 using Win32;
@@ -29,7 +29,7 @@ namespace FollowTyper
         static string Sign = string.Empty;//签名
         static string InputMethod = string.Empty;//输入法
         //static bool flagVersion = true;//选择QQ版本
-        public  static  IntPtr findPtr = IntPtr.Zero;//当前窗口句柄
+        public static IntPtr findPtr = IntPtr.Zero;//当前窗口句柄
         static int GNum = 0;//当前窗口名索引
 
         private static bool pause_ = true;//是否暂停
@@ -93,10 +93,10 @@ namespace FollowTyper
         private bool sendtoRich = false;
         public static IntPtr inputbox;
         private string _StartDate;//统计开始日期
-        private　static  int _todayWordsCount;//今日打字字数
+        private static int _todayWordsCount;//今日打字字数
         //private bool _DateJot=true ;//指示是否
         private int _ToatlWordsCount;//总字数
-        public bool english_Show=false;//是否英文显示，成绩
+        public bool english_Show = false;//是否英文显示，成绩
         private string _startCountTime = "";//开始统计时间
 
         Rectangle rect, rectOld; //QQ窗口范围，以及鼠标当前位置
@@ -106,18 +106,18 @@ namespace FollowTyper
         {
             InitializeComponent();
         }
-      
+
 
         #region 打字代码
         private bool IsFunctionPress(KeyEventArgs e)
         {
-            
+
             if (e.KeyCode.ToString() == "F3")
             {
                 this.Reset();
                 return true;
             }
-            
+
             if (e.KeyCode.ToString() == "F1")
             {
                 if (!pause_)
@@ -155,9 +155,9 @@ namespace FollowTyper
                 labelGroupName.Text = GName[++GNum < GName.Count ? GNum : (GNum = 0)].ToString();
 
                 findPtr = win32Normal.FindWindow("TXGuiFoundation", labelGroupName.Text);
-               
-                   
-                  
+
+
+
             }
             catch
             {
@@ -168,23 +168,23 @@ namespace FollowTyper
         {
             if (this.labelGroupName.Text != "未找到")
             {
-               win32Normal.SetForegroundWindow(findPtr);
-                win32Normal.ShowWindow(findPtr, ConstFlag.SW_SHOWNORMAL );
-              
-                
-                   Clipboard.Clear();
-                    Clipboard.SetText(s);
-                    
-                    //int VK_RETURN = 13;
-                    //int WM_KEYDOWN = 0x0100;
-                    //int VK_CONTROL = 0x11;
-                    //int WM_KEYUP = 0x101;
-                    const int WM_PASTE = 770;//粘贴
-                    // win32Normal.SetForegroundWindow(findPtr);//WM_LBUTTONDOWN   EN_KILLFOCUS   $10000000
-                    win32Normal.PostMessage(findPtr, WM_PASTE, 0, null);
-                   // win32Normal.PostMessage(findPtr, WM_KEYDOWN, VK_RETURN, null);
-               SendKeys.SendWait("^a^v%s");
-               
+                win32Normal.SetForegroundWindow(findPtr);
+                win32Normal.ShowWindow(findPtr, ConstFlag.SW_SHOWNORMAL);
+
+
+                Clipboard.Clear();
+                Clipboard.SetText(s);
+
+                //int VK_RETURN = 13;
+                //int WM_KEYDOWN = 0x0100;
+                //int VK_CONTROL = 0x11;
+                //int WM_KEYUP = 0x101;
+                const int WM_PASTE = 770;//粘贴
+                // win32Normal.SetForegroundWindow(findPtr);//WM_LBUTTONDOWN   EN_KILLFOCUS   $10000000
+                win32Normal.PostMessage(findPtr, WM_PASTE, 0, null);
+                // win32Normal.PostMessage(findPtr, WM_KEYDOWN, VK_RETURN, null);
+                SendKeys.SendWait("^a^v%s");
+
             }
         }
 
@@ -210,7 +210,7 @@ namespace FollowTyper
             this.progressBar1.Minimum = 0;
             this.progressBar1.Step = 1;
             this.progressBar1.Value = 0;
-           // this.lableRate.Text = "0.00%";
+            // this.lableRate.Text = "0.00%";
 
             this.labelLeave.Text = "余" + actLen.ToString() + "字";
             this.timerCount.Stop();
@@ -236,27 +236,27 @@ namespace FollowTyper
             this.labelTime.Text = "0:00";
             this.lableSpeed.Text = "0";
         }
-        
+
         private string GetMessageFromQQ()
         {
             string input = "";
-           
+
             if (findPtr != IntPtr.Zero)
             {
-                 win32Normal.SetForegroundWindow(findPtr);
-               win32Normal.ShowWindow(findPtr, ConstFlag.SW_SHOWNORMAL);
-               win32Normal.GetWindowRect(findPtr, ref rect);
+                win32Normal.SetForegroundWindow(findPtr);
+                win32Normal.ShowWindow(findPtr, ConstFlag.SW_SHOWNORMAL);
+                win32Normal.GetWindowRect(findPtr, ref rect);
                 //SendKeys.SendWait(" {BACKSPACE}{TAB}{TAB}{TAB}{TAB}");
-               rectOld.X = MousePosition.X;
-               rectOld.Y = MousePosition.Y;
-               win32Normal.SetCursorPos(rect.X + 320, rect.Y + 200);
-               win32Normal.mouse_event(MouseEventFlag.LeftDown, rect.X, rect.Y, 0, 0);
-               win32Normal.mouse_event(MouseEventFlag.LeftUp, rect.X, rect.Y, 0, 0);
+                rectOld.X = MousePosition.X;
+                rectOld.Y = MousePosition.Y;
+                win32Normal.SetCursorPos(rect.X + 320, rect.Y + 200);
+                win32Normal.mouse_event(MouseEventFlag.LeftDown, rect.X, rect.Y, 0, 0);
+                win32Normal.mouse_event(MouseEventFlag.LeftUp, rect.X, rect.Y, 0, 0);
                 SendKeys.SendWait("^a");
                 SendKeys.SendWait("^c");
                 SendKeys.SendWait("^a");
                 SendKeys.SendWait("^c");
-                win32Normal.SetCursorPos(rectOld.X, rectOld.Y);    
+                win32Normal.SetCursorPos(rectOld.X, rectOld.Y);
                 input = Clipboard.GetText();
             }
             return this.GetParagram(input);
@@ -349,7 +349,7 @@ namespace FollowTyper
         }
         private void SendText()
         {
-            
+
             int Para = 0;
             string MsgToQQ = "";
             string boxText = "";
@@ -367,7 +367,7 @@ namespace FollowTyper
         private void ProcessHotkey(Message m)
         {
             string str3;
-            
+
             if (((str3 = m.WParam.ToString()) != null) && (str3 == "100"))
             {
                 KeyGetMsg();
@@ -377,9 +377,9 @@ namespace FollowTyper
             {
                 SendText();
                 win32Normal.SetForegroundWindow(base.Handle);
-                
+
             }
-            if (binput<4)
+            if (binput < 4)
             {
                 win32Normal input = new win32Normal();
                 input.InputLan(InputMethod, this.textBoxInput.Handle);
@@ -392,7 +392,7 @@ namespace FollowTyper
             if (messageFromQQ != "")
             {
                 this.richTextBoxGot.Text = messageFromQQ + "\r";
-               
+
             }
             this.Reset();
             win32Normal.SetForegroundWindow(base.Handle);
@@ -413,7 +413,7 @@ namespace FollowTyper
 
         private void WriteIni()
         {
-            
+
             StringBuilder retVal = new StringBuilder(0xff);
             string filePath = Application.StartupPath + @"\TyperConfig.ini";
             win32Normal.WritePrivateProfileString("跟打器", "高度", this.Height.ToString(), filePath);
@@ -431,15 +431,15 @@ namespace FollowTyper
             win32Normal.WritePrivateProfileString("功能", "主题", SubName, filePath);
             win32Normal.WritePrivateProfileString("更新", "日期", DateTime.Now.DayOfYear.ToString(), filePath);
             win32Normal.WritePrivateProfileString("语言选择", "英文显示", english_Show.ToString(), filePath);
-            
-           // win32Normal.GetPrivateProfileString("打字统计", "开始日期", null, retVal, 0xff, filePath);
-           //     if (string.IsNullOrEmpty(retVal.ToString()))
-           //     {
-           //         win32Normal.WritePrivateProfileString("打字统计", "开始日期", DateTime.Now.ToShortDateString(), filePath);
-           //     }                
-           // win32Normal.WritePrivateProfileString("打字统计", "今日字数", _todayWordsCount.ToString(), filePath);
-           //// win32Normal.WritePrivateProfileString("打字统计", "总字数", _ToatlWordsCount.ToString(), filePath);
-           
+
+            // win32Normal.GetPrivateProfileString("打字统计", "开始日期", null, retVal, 0xff, filePath);
+            //     if (string.IsNullOrEmpty(retVal.ToString()))
+            //     {
+            //         win32Normal.WritePrivateProfileString("打字统计", "开始日期", DateTime.Now.ToShortDateString(), filePath);
+            //     }                
+            // win32Normal.WritePrivateProfileString("打字统计", "今日字数", _todayWordsCount.ToString(), filePath);
+            //// win32Normal.WritePrivateProfileString("打字统计", "总字数", _ToatlWordsCount.ToString(), filePath);
+
         }
         private void ReadOutIni()
         {
@@ -454,7 +454,7 @@ namespace FollowTyper
             win32Normal.GetPrivateProfileString("跟打器", "宽度", "538", retVal, 0xff, filePath);
             this.Width = Convert.ToInt32(retVal.ToString());
             win32Normal.GetPrivateProfileString("跟打器", "X", "50", retVal, 0xff, filePath);
-            x=Convert.ToInt32(retVal.ToString());
+            x = Convert.ToInt32(retVal.ToString());
             win32Normal.GetPrivateProfileString("跟打器", "Y", "50", retVal, 0xff, filePath);
             y = Convert.ToInt32(retVal.ToString());
             //this.StartPosition = FormStartPosition.Manual;
@@ -502,7 +502,7 @@ namespace FollowTyper
             this.textBoxInput.Font.Dispose();
             this.textBoxInput.Font = ComMethod.GetFont(family, size, style);
             win32Normal.GetPrivateProfileString("输入框", "高度", "null", retVal, 0xff, filePath);
-            if (retVal.ToString()!= "null")
+            if (retVal.ToString() != "null")
             {
                 this.splitContainer1.SplitterDistance = Convert.ToInt32(retVal.ToString());
             }
@@ -511,7 +511,7 @@ namespace FollowTyper
             {
                 if (this.splitContainer2.Panel2MinSize < this.splitContainer2.SplitterDistance && this.splitContainer2.SplitterDistance < Width - this.splitContainer2.Panel2MinSize)
                     this.splitContainer2.SplitterDistance = Convert.ToInt32(retVal.ToString());
-               // MessageBox.Show(this.splitContainer2.Panel2MinSize.ToString(), this.splitContainer2.SplitterDistance.ToString());
+                // MessageBox.Show(this.splitContainer2.Panel2MinSize.ToString(), this.splitContainer2.SplitterDistance.ToString());
             }
             win32Normal.GetPrivateProfileString("发送设置", "错字", "true", retVal, 0xff, filePath);
             bolA[0] = bool.Parse(retVal.ToString());
@@ -562,7 +562,7 @@ namespace FollowTyper
             {
                 labelInfo.Text = "成绩格式：中文";
             }
-            
+
         }
 
 
@@ -688,9 +688,9 @@ namespace FollowTyper
                         preLine = lineFromCharIndex;
                     }
                     preLen = this.textBoxInput.Text.Length;
-                    if (this.textBoxInput.Text.Length == actLen&&textBoxInput .Text [actLen-1 ]==richTextBoxGot .Text [actLen-1 ])
+                    if (this.textBoxInput.Text.Length == actLen && textBoxInput.Text[actLen - 1] == richTextBoxGot.Text[actLen - 1])
                     {
-                       // MessageBox.Show( richTextBoxGot.Text[actLen - 1].ToString (),textBoxInput.Text[actLen-1].ToString ());
+                        // MessageBox.Show( richTextBoxGot.Text[actLen - 1].ToString (),textBoxInput.Text[actLen-1].ToString ());
                         double num8;
                         this.timerCount.Stop();
                         string str = "";
@@ -727,11 +727,11 @@ namespace FollowTyper
                         avgPress += pressCount;
                         avgWords += actLen;
                         avgWrongWords += wrongWord;
-                        
+
                         double num9 = (((rightWord + wrongWord) - (5 * wrongWord)) * 60.0) / FollowTyperc.countCost;
                         double num10 = ((double)pressCount) / FollowTyperc.countCost;
                         this.dataGridViewResult.Rows.Add(new object[] { page, string.Format("{0:0.00}", num9), string.Format("{0:0.00}", num10), string.Format("{0:0.00}", num8), back.ToString(), string.Format("{0:0000}", num) });
-                       this.dataGridViewResult.Sort(this.dataGridViewResult.Columns[this.dataGridViewResult.Columns.Count - 1], ListSortDirection.Descending);
+                        this.dataGridViewResult.Sort(this.dataGridViewResult.Columns[this.dataGridViewResult.Columns.Count - 1], ListSortDirection.Descending);
                         string s = "";// this.lablePara.Text + " 速度";
                         double dsped = num9;
                         string spd = "";
@@ -801,13 +801,13 @@ namespace FollowTyper
                             _ToatlWordsCount += actLen;
                             s += SignSet();
                             SendToQQ(s);
-                           // labelInfo.Text = "成绩格式：中文";
+                            // labelInfo.Text = "成绩格式：中文";
                             labWords.Text = "今日:" + _todayWordsCount + " 总数:" + _ToatlWordsCount;
                         }
                         else
                         {
-                            s = "Paragraph:"+page + " Speed:";
-                           
+                            s = "Paragraph:" + page + " Speed:";
+
                             if (wrongWord > 0)
                             {
                                 spd = string.Format("{0:0.00}", num9) + "/";
@@ -869,7 +869,7 @@ namespace FollowTyper
                             _ToatlWordsCount += actLen;
                             s += SignSetEnglish();
                             SendToQQ(s);
-                           // labelInfo.Text = "成绩格式：英文" ;
+                            // labelInfo.Text = "成绩格式：英文" ;
                             labWords.Text = "Today:" + _todayWordsCount + " Total:" + _ToatlWordsCount;
                         }
                         System.Threading.ThreadPool.QueueUserWorkItem(o =>
@@ -903,8 +903,8 @@ namespace FollowTyper
                                 }));
                             }
                         });
-                        
-                       
+
+
                         grade = new StringBuilder(s);
                         averageGrade(num9, num10);
                     }
@@ -925,11 +925,11 @@ namespace FollowTyper
             {
                 sr += sigh;
             }
-            sr +=" 统计[总字"+_ToatlWordsCount +" 今日" + _todayWordsCount + " 起" + _StartDate+"]";
-           
-            
-                sr += "◆" + Application.ProductVersion.Substring(0, 3);
-            
+            sr += " 统计[总字" + _ToatlWordsCount + " 今日" + _todayWordsCount + " 起" + _StartDate + "]";
+
+
+            sr += "◆" + Application.ProductVersion.Substring(0, 3);
+
             return sr;
         }
         private string SignSetEnglish()
@@ -952,7 +952,7 @@ namespace FollowTyper
             }
             return sr;
         }
-        
+
         private void averageGrade(double speed, double presscount)
         {
             totalSpeed += speed;
@@ -976,7 +976,7 @@ namespace FollowTyper
         {
             this.readAllInfo();
             System.Threading.ThreadPool.QueueUserWorkItem(o =>
-            {               
+            {
                 if (isTodayRead(nowtime) && checkUpdate())
                 {
                     if (isStop == true)
@@ -990,35 +990,35 @@ namespace FollowTyper
                     }));
                 }
             });
-           
-            
+
+
         }
         private void readAllInfo()
         {
-             ReadOutIni();
+            ReadOutIni();
             sendtext.ReadOut();
-             Init();
+            Init();
             inputbox = this.textBoxInput.Handle;
             win32Normal.RegisterHotKey(base.Handle, 100, 0, keyLoad);
             win32Normal.RegisterHotKey(base.Handle, 99, 0, keySend);//0x73);
             //labelInfo.Text = "跟打前按F12获得窗口，F4载入文本，亦可自由定制热键";
             this.Text = "易跟打" + Application.ProductVersion.Substring(0, 3);
             GetGroupName();
-             GetTypeInfo_WordsCount();
+            GetTypeInfo_WordsCount();
             sendtext.Hide();
-            labWords.Text = "今日:" + _todayWordsCount + " 总数:" + _ToatlWordsCount+" 开始时间："+_startCountTime;
+            labWords.Text = "今日:" + _todayWordsCount + " 总数:" + _ToatlWordsCount + " 开始时间：" + _startCountTime;
             timer1.Start();
-           // labWords.Text = new GradesHis().command("select sum(wordscount) from grade where datediff('d',date,now())=0");
-            
+            // labWords.Text = new GradesHis().command("select sum(wordscount) from grade where datediff('d',date,now())=0");
+
         }
         private void GetTypeInfo_WordsCount()
         {
-            string tem = "";            
-             tem=new GradesHis().command("select sum(wordscount) from grade where datediff('d',date,now())=0");
-            _todayWordsCount=string.IsNullOrEmpty(tem)?0:int.Parse(tem);
-            _ToatlWordsCount =int.Parse(new GradesHis().command("select sum(wordscount) from grade"));
-            _StartDate= _startCountTime = new GradesHis().command("SELECT top 1 Format(date, 'yyyy-mm-dd') FROM grade ORDER BY  Format(date, 'yyyy-mm-dd') asc");
-           
+            string tem = "";
+            tem = new GradesHis().command("select sum(wordscount) from grade where datediff('d',date,now())=0");
+            _todayWordsCount = string.IsNullOrEmpty(tem) ? 0 : int.Parse(tem);
+            _ToatlWordsCount = int.Parse(new GradesHis().command("select sum(wordscount) from grade"));
+            _StartDate = _startCountTime = new GradesHis().command("SELECT top 1 Format(date, 'yyyy-mm-dd') FROM grade ORDER BY  Format(date, 'yyyy-mm-dd') asc");
+
         }
         private void Frm_Main_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -1030,7 +1030,7 @@ namespace FollowTyper
         private void 基本设置ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Setting set = new Setting();
-           // SignAndSetInput set = new SignAndSetInput(Sign, InputMethod, flagVersion); //注册form2_MyEvent方法的MyEvent事件 
+            // SignAndSetInput set = new SignAndSetInput(Sign, InputMethod, flagVersion); //注册form2_MyEvent方法的MyEvent事件 
             //set.MyEventSign += new MyDelegateSign(set_MyEventSign);
             set.EventKeys += new delegateHotKey(set_EventKeys);
             set.eventSend += new delegateSendStyle(set_eventSend);
@@ -1041,7 +1041,7 @@ namespace FollowTyper
 
         }
 
-        void set_eventSend(bool typesend, bool sigle,bool sendtorich)
+        void set_eventSend(bool typesend, bool sigle, bool sendtorich)
         {
             sendSingle = sigle;
             sendafterType = typesend;
@@ -1065,9 +1065,9 @@ namespace FollowTyper
             {
                 labelInfo.Text = "成绩格式：中文";
             }
-            
+
         }
-        void set_EventKeys(Keys Load, Keys GetNM,Keys Send)
+        void set_EventKeys(Keys Load, Keys GetNM, Keys Send)
         {
             keyGetGN = GetNM;
             keyLoad = Load;
@@ -1103,8 +1103,8 @@ namespace FollowTyper
             string s0 = richTextBoxGot.Text;
             s0 = Regex.Replace(s0, @"[\s]", "");
             richTextBoxGot.Text = s0 + "\r";
-        }       
-        
+        }
+
         private void 使用帮助ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(
@@ -1153,7 +1153,7 @@ namespace FollowTyper
             char[] x = s.ToCharArray();
             foreach (char it in x)
             {
-               // newList.Add(it);
+                // newList.Add(it);
                 newList.Insert(random.Next(newList.Count), it);
             }
             foreach (char p in newList)
@@ -1186,7 +1186,7 @@ namespace FollowTyper
         private void 关于ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             AboutBox About = new AboutBox();
-            About.ShowDialog();            
+            About.ShowDialog();
         }
 
         #endregion
@@ -1244,27 +1244,27 @@ namespace FollowTyper
         private bool checkUpdate()
         {
             string filepath = Application.StartupPath + "\\有新版本.txt";
-            SoftUpdate app = new SoftUpdate(Application.ExecutablePath, "跟打器");
-            app.checkUpdate();
-            if(!string.IsNullOrEmpty(app.richBox))
-                this.SetText(app.richBox);
-            StatusLabelInfo.Text = app.Info;
-            
-            if (!string.IsNullOrEmpty(app.isStop)&&app.isStop.ToLower() == "true")
+            SoftUpdate updateInstance = new SoftUpdate(Application.ExecutablePath, "跟打器");
+            updateInstance.checkUpdate();
+            if (!string.IsNullOrEmpty(updateInstance.updateItems.Message))
+                this.SetText(updateInstance.updateItems.Message);
+            StatusLabelInfo.Text = updateInstance.updateItems.Info;
+
+            if (!string.IsNullOrEmpty(updateInstance.updateItems.IsStop) && updateInstance.updateItems.IsStop.ToLower() == "true")
             {
                 isStop = true;
             }
             try
             {
-        
-                if (app.IsUpdate)
+
+                if (updateInstance.NeedUpdate)
                 {
-                    Version = app.NewVerson;
-                    DownUrl = app.download;
-                    Descrip1 = app.description1;
-                    Descrip2 = app.description2;
-                    Descrip3 = app.description3;
-                  
+                    Version = updateInstance.updateItems.Version;
+                    DownUrl = updateInstance.updateItems.DownloadAddress;
+                    Descrip1 = updateInstance.updateItems.Descriptions[0];
+                    Descrip2 = updateInstance.updateItems.Descriptions[1];
+                    Descrip3 = updateInstance.updateItems.Descriptions[2];
+
                     win32Normal.WritePrivateProfileString("最新版本", "版本号", Version, filepath);
                     win32Normal.WritePrivateProfileString("最新版本", "下载地址", DownUrl, filepath);
                     return true;
@@ -1280,7 +1280,7 @@ namespace FollowTyper
 
         private void btnHideSender_Click(object sender, EventArgs e)
         {
-                sendtext.Show();
+            sendtext.Show();
         }
 
         private void toolStripMenuItem4_Click(object sender, EventArgs e)
@@ -1292,7 +1292,7 @@ namespace FollowTyper
         private void timer1_Tick(object sender, EventArgs e)
         {
             _nowTime.Text = DateTime.Now.ToLongTimeString();
-          
+
         }
 
         private void timerSpeed_Tick(object sender, EventArgs e)
@@ -1307,9 +1307,9 @@ namespace FollowTyper
                 lableSpeed.Text = _strSpeed;
             }
         }
-              private void MenuItemCheckUp_Click(object sender, EventArgs e)
+        private void MenuItemCheckUp_Click(object sender, EventArgs e)
         {
-            checkUpdate chup = new FollowTyper.checkUpdate();
+            UpdateBox chup = new FollowTyper.UpdateBox();
             chup.Show();
             RefreshBox refb = new RefreshBox();
             System.Threading.ThreadPool.QueueUserWorkItem(o =>
