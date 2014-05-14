@@ -101,11 +101,11 @@
     <Compile Include="AboutBox.Designer.cs">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="checkUpdate.cs">
+    <Compile Include="UpdateBox.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="checkUpdate.Designer.cs">
-      <DependentUpon>checkUpdate.cs</DependentUpon>
+    <Compile Include="UpdateBox.Designer.cs">
+      <DependentUpon>UpdateBox.cs</DependentUpon>
     </Compile>
     <Compile Include="ComMethod.cs" />
     <Compile Include="Frm_main.cs">
@@ -137,8 +137,8 @@
     <EmbeddedResource Include="AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="checkUpdate.resx">
-      <DependentUpon>checkUpdate.cs</DependentUpon>
+    <EmbeddedResource Include="UpdateBox.resx">
+      <DependentUpon>UpdateBox.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Frm_main.resx">
       <DependentUpon>Frm_main.cs</DependentUpon>
@@ -203,7 +203,6 @@
     <None Include="Resources\儿童是祖国的未来.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="tumbrl.ico" />
     <Content Include="mainicon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -221,9 +220,9 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UpGrade\UpGrade.csproj">
+    <ProjectReference Include="..\UpGrade\AutoUpdate.csproj">
       <Project>{6246C852-2FF2-4769-9ADE-ED0649194D7E}</Project>
-      <Name>UpGrade</Name>
+      <Name>AutoUpdate</Name>
     </ProjectReference>
     <ProjectReference Include="..\Win32\Win32.csproj">
       <Project>{69202AE0-E199-4A8A-8836-4218506FA38B}</Project>
