@@ -7,28 +7,10 @@ namespace SqlGrades
 {
    public class GradesHis
     {
-
-        public void Add(string date, string para, double speed,
-            int back, double hitkey, double keylong, int wronwor,
-            int wrordscount, int keycount, string time)
-        {
-            string P_Connection = string.Format(//创建数据库连接字符串
-              "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=../rsc/Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang");
-            OleDbConnection P_OLEDBConnection = //创建连接对象
-                new OleDbConnection(P_Connection);
-            P_OLEDBConnection.Open();//连接到数据库
-            string P_str = string.Format("insert into grade([date],para,speed,back,hitkey,keylong,wronwor,wordscount,keycount,[time]) values('{0}','{1}','{2}','{3}','{4}','{5}','{6}','{7}','{8}','{9}')",
-                date, para, speed, back, hitkey, keylong, wronwor, wrordscount, keycount, time);
-            OleDbCommand P_OLEDBCommand = new OleDbCommand(//创建命令对象
-                P_str, P_OLEDBConnection);
-            P_OLEDBCommand.ExecuteNonQuery();
-
-        }
-
+       private string P_Connection = string.Format(//创建数据库连接字符串
+            "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=./Data/Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang"); 
         public void Delete(string strCommand)//date, string para, string speed, string back)
         {
-            string P_Connection = string.Format(//创建数据库连接字符串
-              "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=../src/Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang");
             OleDbConnection P_OLEDBConnection = //创建连接对象
                 new OleDbConnection(P_Connection);//ID=1 and 
             P_OLEDBConnection.Open();//连接到数据库
@@ -42,8 +24,6 @@ namespace SqlGrades
 
         public string command(string order)
         {
-            string P_Connection = string.Format(//创建数据库连接字符串
-             "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=../rsc/Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang"); 
             OleDbConnection P_OLEDBConnection = //创建连接对象
                 new OleDbConnection(P_Connection);
             P_OLEDBConnection.Open();//连接到数据库            
@@ -61,23 +41,21 @@ namespace SqlGrades
             return tem;
 
         }
-       public List<task> Select()
+       public List<fields> Select()
        {
-           string P_Connection = string.Format(//创建数据库连接字符串
-            "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=../rsc/Grades.mdb;User Id=Admin;Persist Security Info=True;Jet OLEDB:Database Password=owenyang"); 
            OleDbConnection P_OLEDBConnection = //创建连接对象
                new OleDbConnection(P_Connection);
            P_OLEDBConnection.Open();//连接到数据库     select Format(now(), 'yyyy-mm-dd')       
-           string P_str = string.Format("select * from grade order by ID desc");
+           string P_str = string.Format("select * from T_Grade order by ID desc");
           // string P_str = string.Format("select * from grade where datediff('d',date,now())=0");
            OleDbCommand P_OLEDBCommand = new OleDbCommand(//创建命令对象
                P_str, P_OLEDBConnection);
            OleDbDataReader P_Reader = //得到数据读取器
             P_OLEDBCommand.ExecuteReader();
-           List<task> P_Task = new List<task>();
+           List<fields> P_Task = new List<fields>();
            while (P_Reader.Read())//读取数据
            {
-               P_Task.Add(new task() //将数据放入集合
+               P_Task.Add(new fields() //将数据放入集合
                {
                    Date = Convert.ToDateTime(P_Reader[0]),
                    Para = P_Reader[1].ToString(),
@@ -100,7 +78,7 @@ namespace SqlGrades
        }
     }
 
-  public class task
+  public class fields
     {
 
         public DateTime Date { get; set; }
