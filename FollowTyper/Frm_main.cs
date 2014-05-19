@@ -897,7 +897,7 @@ namespace FollowTyper
                                 }));
                             }
                         });
-                       
+
                         System.Threading.ThreadPool.QueueUserWorkItem(o =>
                         {
                             if (sendafterType)
@@ -915,7 +915,8 @@ namespace FollowTyper
                     }
                 }
             }
-            catch (Exception ex){
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.Message);
             }
         }

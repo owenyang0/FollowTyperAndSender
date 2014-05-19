@@ -6,7 +6,7 @@ namespace FollowTyper
 {
     class ComMethod
     {
-        public static  Font GetFont(string family, float size, string style)
+        public static Font GetFont(string family, float size, string style)
         {
 
             int startIndexName = family.IndexOf("Name") + 5;
@@ -43,15 +43,15 @@ namespace FollowTyper
         //"IconLocationPath"指定快捷方式的图标
         public void CreateShortcutLnk(string FolderPath, string PathLink, string LnkName, string LnkNote, string IconLocationPath)
         {
-                WshShell shell = new WshShell();
-                IWshShortcut Shortcut = (IWshShortcut)shell.CreateShortcut(FolderPath + "\\" + LnkName + ".lnk");
-                Shortcut.TargetPath = PathLink;
-                Shortcut.WindowStyle = 1;
-                Shortcut.Description = LnkNote;
-                Shortcut.IconLocation = IconLocationPath;
-                Shortcut.WorkingDirectory = System.Environment.CurrentDirectory;
-                Shortcut.Save();
-           
+            WshShell shell = new WshShell();
+            IWshShortcut Shortcut = (IWshShortcut)shell.CreateShortcut(FolderPath + "\\" + LnkName + ".lnk");
+            Shortcut.TargetPath = PathLink;
+            Shortcut.WindowStyle = 1;
+            Shortcut.Description = LnkNote;
+            Shortcut.IconLocation = IconLocationPath;
+            Shortcut.WorkingDirectory = System.Environment.CurrentDirectory;
+            Shortcut.Save();
+
         }
     }
 

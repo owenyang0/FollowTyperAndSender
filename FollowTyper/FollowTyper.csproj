@@ -42,7 +42,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -59,6 +59,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup>
     <ApplicationIcon>tumbrl.ico</ApplicationIcon>
@@ -157,6 +158,7 @@
     <EmbeddedResource Include="Setting.resx">
       <DependentUpon>Setting.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -220,9 +222,17 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\UpGrade\AutoUpdate.csproj">
-      <Project>{6246C852-2FF2-4769-9ADE-ED0649194D7E}</Project>
+    <ProjectReference Include="..\AutoUpdate\AutoUpdate.csproj">
+      <Project>{6246c852-2ff2-4769-9ade-ed0649194d7e}</Project>
       <Name>AutoUpdate</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataOperation\DataOperation.csproj">
+      <Project>{c90b71be-e250-40dd-9e7b-1ef8825fda7a}</Project>
+      <Name>DataOperation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TypeHistory\TypeHistory.csproj">
+      <Project>{c77ad651-b081-45fd-bc49-8886ab1843d5}</Project>
+      <Name>TypeHistory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Win32\Win32.csproj">
       <Project>{69202AE0-E199-4A8A-8836-4218506FA38B}</Project>
