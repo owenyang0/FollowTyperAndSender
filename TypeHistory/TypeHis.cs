@@ -35,7 +35,7 @@ namespace FollowTyper
         {
 
             dgvGrades.Rows.Clear();//清空控件项 
-            G_Task = new GradesHis().Select();//得到任务集合
+            G_Task = new GradesHistory().Select();//得到任务集合
             dgvGrades.DataSource = G_Task;
             dgvGrades.Columns[0].HeaderText = "日期";
             dgvGrades.Columns[1].HeaderText = "段数";
@@ -53,39 +53,39 @@ namespace FollowTyper
             string startTime = "", endTime = "";
             string temDayWords = "";
 
-            tem = new GradesHis().command("select count(ID) from T_Grade");
+            tem = new GradesHistory().command("select count(ID) from T_Grade");
             labAllCount.Text = "总条数：" + tem;
-            tem = new GradesHis().command("select sum(wordscount) from T_Grade");
+            tem = new GradesHistory().command("select sum(wordscount) from T_Grade");
             totalWordtem = string.IsNullOrEmpty(tem) ? 0 : int.Parse(tem);
             labAllWords.Text = "总字数：" + tem;
-            tem = new GradesHis().command("select sum(keycount) from T_Grade");
+            tem = new GradesHistory().command("select sum(keycount) from T_Grade");
             labkeyCount.Text = "总键数：" + tem;
-            tem = new GradesHis().command("select avg(speed) from T_Grade");
+            tem = new GradesHistory().command("select avg(speed) from T_Grade");
             labAverageSpeed.Text = "平均速度：" + tem.Substring(0, tem.IndexOf('.') + 3);
-            tem = new GradesHis().command("select avg(hitkey) from T_Grade");
+            tem = new GradesHistory().command("select avg(hitkey) from T_Grade");
             labAverageHitKeys.Text = "平均击键：" + tem.Substring(0, tem.IndexOf('.') + 3);
-            tem = new GradesHis().command("select avg(keylong) from T_Grade");
+            tem = new GradesHistory().command("select avg(keylong) from T_Grade");
             labAverageWorkdsLength.Text = "平均码长：" + tem.Substring(0, tem.IndexOf('.') + 3);
-            tem = new GradesHis().command("select top 1 speed from T_Grade order by speed desc");//select top 5 * from T_Grade order by date desc
+            tem = new GradesHistory().command("select top 1 speed from T_Grade order by speed desc");//select top 5 * from T_Grade order by date desc
             labTopSpeed.Text = "最高速度：" + tem;
-            tem = new GradesHis().command("select top 1 hitkey from T_Grade order by hitkey desc");
+            tem = new GradesHistory().command("select top 1 hitkey from T_Grade order by hitkey desc");
             labBestHit.Text = "最佳击键：" + tem;
-            tem = new GradesHis().command("select top 1 keylong from T_Grade order by keylong asc");// order by keylong asc");
+            tem = new GradesHistory().command("select top 1 keylong from T_Grade order by keylong asc");// order by keylong asc");
             labbestWordsLength.Text = "最佳码长：" + tem;
 
-            tem = new GradesHis().command("SELECT top 1 Format(CompletedDate, 'yyyy-mm-dd') FROM T_Grade ORDER BY  Format(CompletedDate, 'yyyy-mm-dd') asc");
+            tem = new GradesHistory().command("SELECT top 1 Format(CompletedDate, 'yyyy-mm-dd') FROM T_Grade ORDER BY  Format(CompletedDate, 'yyyy-mm-dd') asc");
             startTime = tem;
             labStaticTime.Text = "统计时间：" + tem;
-            tem = new GradesHis().command("SELECT top 1 Format(CompletedDate, 'yyyy-mm-dd') FROM T_Grade ORDER BY  Format(CompletedDate, 'yyyy-mm-dd') desc");
+            tem = new GradesHistory().command("SELECT top 1 Format(CompletedDate, 'yyyy-mm-dd') FROM T_Grade ORDER BY  Format(CompletedDate, 'yyyy-mm-dd') desc");
             endTime = tem;
             labStaticTime.Text += " to " + tem;
-            tem = new GradesHis().command("SELECT datediff('d',#" + startTime + "#,now())FROM T_Grade");
+            tem = new GradesHistory().command("SELECT datediff('d',#" + startTime + "#,now())FROM T_Grade");
             totalDays = string.IsNullOrEmpty(tem) ? 0 : int.Parse(tem);
             temDayWords = ((double)totalWordtem / totalDays).ToString();
             dayWords.Text = "每日平均字数：" + temDayWords.Substring(0, temDayWords.IndexOf('.') + 3);
-            tem = new GradesHis().command("select sum(wordscount) from T_Grade where datediff('d',CompletedDate,now())=0");
+            tem = new GradesHistory().command("select sum(wordscount) from T_Grade where datediff('d',CompletedDate,now())=0");
             todayWords.Text = "今日字数：" + (string.IsNullOrEmpty(tem) ? 0 : int.Parse(tem)).ToString();
-            tem = new GradesHis().command("select avg(speed) from T_Grade where datediff('d',CompletedDate,now())=0");
+            tem = new GradesHistory().command("select avg(speed) from T_Grade where datediff('d',CompletedDate,now())=0");
             if (!string.IsNullOrEmpty(tem))
             {
                 daySpeed.Text = "今日速度：" + tem.Substring(0, tem.IndexOf('.') + 3);
@@ -108,15 +108,6 @@ namespace FollowTyper
                 this.dgvGrades.Rows[e.RowIndex + i].HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
 
                 this.dgvGrades.Rows[e.RowIndex + i].HeaderCell.Value = (e.RowIndex + i + 1).ToString();
-            }
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            G_Task = new GradesHis().Select();//得到任务集合
-            foreach (fields t in G_Task)//遍历任务集合
-            {
-                MessageBox.Show(t.HitKey, t.KeyLong);
             }
         }
     }

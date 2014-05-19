@@ -22,7 +22,7 @@ namespace Tools
         {
             string para = tbxPara.Text;
             string strCommand = string.Format("delete from grade where para='{0}'", para);
-            new GradesHis().Delete(strCommand);
+            new GradesHistory().Delete(strCommand);
             
         }
     }

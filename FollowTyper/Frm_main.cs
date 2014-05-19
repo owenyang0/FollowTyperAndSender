@@ -1022,10 +1022,10 @@ namespace FollowTyper
         private void GetTypeInfo_WordsCount()
         {
             string tem = "";
-            tem = new GradesHis().command("select sum(wordscount) from T_Grade where datediff('d',CompletedDate,now())=0");
+            tem = new GradesHistory().command("select sum(wordscount) from T_Grade where datediff('d',CompletedDate,now())=0");
             _todayWordsCount = string.IsNullOrEmpty(tem) ? 0 : int.Parse(tem);
-            _ToatlWordsCount = int.Parse(new GradesHis().command("select sum(wordscount) from T_Grade"));
-            _StartDate = _startCountTime = new GradesHis().command("SELECT top 1 Format(CompletedDate, 'yyyy-mm-dd') FROM T_Grade ORDER BY  Format(CompletedDate, 'yyyy-mm-dd') asc");
+            _ToatlWordsCount = int.Parse(new GradesHistory().command("select sum(wordscount) from T_Grade"));
+            _StartDate = _startCountTime = new GradesHistory().command("SELECT top 1 Format(CompletedDate, 'yyyy-mm-dd') FROM T_Grade ORDER BY  Format(CompletedDate, 'yyyy-mm-dd') asc");
 
         }
         private void Frm_Main_FormClosing(object sender, FormClosingEventArgs e)
