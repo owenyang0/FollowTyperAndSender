@@ -16,6 +16,9 @@ using System.Runtime.InteropServices;
 using SqlGrades;
 using AutoUpdate;
 using Win32;
+using DataOperation.Model;
+using DataOperation.DAL;
+//using DataOperation.Model;
 
 namespace FollowTyper
 {
@@ -33,16 +36,16 @@ namespace FollowTyper
         static int GNum = 0;//当前窗口名索引
 
         private static bool pause_ = true;//是否暂停
-        private static int pressCount = 0;//键数
+        private static int keyCount = 0;//键数
         private static double startTime = 0.0;//开始跟打时间
-        private static int back = 0;//回改数
+        private static int backSpace = 0;//回改数
         private static int timeCount = 0;//开打后，所用时间整数
         private static int preLen = 0;
-        private static int actLen = 0;
+        private static int wordsCount = 0;
         private static bool[] isRight = new bool[0x1388];
         private static int preLine = 0;
         private static int rightWord = 0;
-        private static int wrongWord = 0;
+        private static int wrongWords = 0;
         private static double countCost = 0.0;
 
 
@@ -205,14 +208,14 @@ namespace FollowTyper
         }
         private void Reset()
         {
-            actLen = this.richTextBoxGot.TextLength - 1;
-            this.progressBar1.Maximum = actLen;
+            wordsCount = this.richTextBoxGot.TextLength - 1;
+            this.progressBar1.Maximum = wordsCount;
             this.progressBar1.Minimum = 0;
             this.progressBar1.Step = 1;
             this.progressBar1.Value = 0;
             // this.lableRate.Text = "0.00%";
 
-            this.labelLeave.Text = "余" + actLen.ToString() + "字";
+            this.labelLeave.Text = "余" + wordsCount.ToString() + "字";
             this.timerCount.Stop();
             timeCount = 0;
             pause_ = true;
@@ -224,9 +227,9 @@ namespace FollowTyper
             this.richTextBoxGot.ScrollToCaret();
             num++;
             rightWord = 0;
-            wrongWord = 0;
-            back = 0;
-            pressCount = 0;
+            wrongWords = 0;
+            backSpace = 0;
+            keyCount = 0;
             startTime = 0.0;
             endTime = 0.0;
             this.textBoxInput.Text = "";
@@ -580,10 +583,10 @@ namespace FollowTyper
                     pause_ = false;
                     this.timerCount.Start();
                 }
-                pressCount++;
+                keyCount++;
                 if (e.KeyCode.ToString() == "Back")
                 {
-                    back++;
+                    backSpace++;
                 }
             }
         }
@@ -636,14 +639,14 @@ namespace FollowTyper
                     }
                     int num3;
                     this.MyTrimEnd(this.textBoxInput.Text);
-                    if (this.textBoxInput.Text.Length >= actLen)
+                    if (this.textBoxInput.Text.Length >= wordsCount)
                     {
-                        this.textBoxInput.Text = this.textBoxInput.Text.Substring(0, actLen);
+                        this.textBoxInput.Text = this.textBoxInput.Text.Substring(0, wordsCount);
                     }
-                    this.labelLeave.Text = "余" + ((actLen - this.textBoxInput.TextLength)).ToString() + "字";
-                    double num2 = ((double)(this.textBoxInput.Text.Length * 100)) / ((double)actLen);
+                    this.labelLeave.Text = "余" + ((wordsCount - this.textBoxInput.TextLength)).ToString() + "字";
+                    double num2 = ((double)(this.textBoxInput.Text.Length * 100)) / ((double)wordsCount);
                     //this.lableRate.Text = string.Format("{0:0.00}", num2) + "%";
-                    this.progressBar1.Value = (this.textBoxInput.Text.Length * this.progressBar1.Maximum) / actLen;
+                    this.progressBar1.Value = (this.textBoxInput.Text.Length * this.progressBar1.Maximum) / wordsCount;
                     for (num3 = preLen - 1; num3 >= this.textBoxInput.Text.Length; num3--)
                     {
                         this.richTextBoxGot.Select(num3, 1);
@@ -688,20 +691,20 @@ namespace FollowTyper
                         preLine = lineFromCharIndex;
                     }
                     preLen = this.textBoxInput.Text.Length;
-                    if (this.textBoxInput.Text.Length == actLen && textBoxInput.Text[actLen - 1] == richTextBoxGot.Text[actLen - 1])
+                    if (this.textBoxInput.Text.Length == wordsCount && textBoxInput.Text[wordsCount - 1] == richTextBoxGot.Text[wordsCount - 1])
                     {
                         // MessageBox.Show( richTextBoxGot.Text[actLen - 1].ToString (),textBoxInput.Text[actLen-1].ToString ());
-                        double num8;
+                        double keyLong;
                         this.timerCount.Stop();
                         string str = "";
                         string str2 = "";
-                        wrongWord = 0;
+                        wrongWords = 0;
                         rightWord = 0;
-                        for (num3 = 0; num3 < actLen; num3++)
+                        for (num3 = 0; num3 < wordsCount; num3++)
                         {
                             if (this.richTextBoxGot.Text[num3] != this.textBoxInput.Text[num3])
                             {
-                                wrongWord++;
+                                wrongWords++;
                                 str = str + this.richTextBoxGot.Text[num3];
                                 str2 = str2 + this.textBoxInput.Text[num3];
                             }
@@ -714,27 +717,27 @@ namespace FollowTyper
                         this.textBoxInput.Select(this.textBoxInput.Text.Length, 0);
                         if (this.textBoxInput.Text.Length != 0)
                         {
-                            num8 = ((double)pressCount) / ((double)this.textBoxInput.Text.Length);
+                            keyLong = ((double)keyCount) / ((double)this.textBoxInput.Text.Length);
                         }
                         else
                         {
-                            num8 = 0.0;
+                            keyLong = 0.0;
                         }
                         endTime = DateTime.Now.TimeOfDay.TotalSeconds;
                         FollowTyperc.countCost += endTime - startTime;
                         avgTime += FollowTyperc.countCost;
-                        avgBack += back;
-                        avgPress += pressCount;
-                        avgWords += actLen;
-                        avgWrongWords += wrongWord;
+                        avgBack += backSpace;
+                        avgPress += keyCount;
+                        avgWords += wordsCount;
+                        avgWrongWords += wrongWords;
 
-                        double num9 = (((rightWord + wrongWord) - (5 * wrongWord)) * 60.0) / FollowTyperc.countCost;
-                        double num10 = ((double)pressCount) / FollowTyperc.countCost;
-                        this.dataGridViewResult.Rows.Add(new object[] { page, string.Format("{0:0.00}", num9), string.Format("{0:0.00}", num10), string.Format("{0:0.00}", num8), back.ToString(), string.Format("{0:0000}", num) });
+                        double num9 = (((rightWord + wrongWords) - (5 * wrongWords)) * 60.0) / FollowTyperc.countCost;
+                        double hitKey = ((double)keyCount) / FollowTyperc.countCost;
+                        this.dataGridViewResult.Rows.Add(new object[] { page, string.Format("{0:0.00}", num9), string.Format("{0:0.00}", hitKey), string.Format("{0:0.00}", keyLong), backSpace.ToString(), string.Format("{0:0000}", num) });
                         this.dataGridViewResult.Sort(this.dataGridViewResult.Columns[this.dataGridViewResult.Columns.Count - 1], ListSortDirection.Descending);
                         string s = "";// this.lablePara.Text + " 速度";
                         double dsped = num9;
-                        string spd = "";
+                        string speed = "";
                         int num12;
                         if (!english_Show)
                         {
@@ -751,11 +754,11 @@ namespace FollowTyper
                             //else
                             //{
                             s = s + string.Format("{0:0.00}", num9);
-                            spd += string.Format("{0:0.00}", num9);
+                            speed += string.Format("{0:0.00}", num9);
                             //}
                             timerSpeed.Stop();
                             _flagSpeed = false;
-                            lableSpeed.Text = spd;
+                            lableSpeed.Text = speed;
                             if (str == "")
                             {
                                 str = " 错字:无";
@@ -765,28 +768,28 @@ namespace FollowTyper
                                 str = " 正[" + str + "] 误[" + str2 + "]";
                             }
                             object obj2 = s;
-                            s = string.Concat(new object[] { obj2, " 回改", back, " 击键", string.Format("{0:0.00}", num10), " 码长", string.Format("{0:0.00}", num8) });
-                            double countCost = FollowTyperc.countCost;
+                            s = string.Concat(new object[] { obj2, " 回改", backSpace, " 击键", string.Format("{0:0.00}", hitKey), " 码长", string.Format("{0:0.00}", keyLong) });
+                            double countCosts = FollowTyperc.countCost;
 
-                            num12 = (int)(countCost / 60.0);
-                            countCost -= num12 * 60;
+                            num12 = (int)(countCosts / 60.0);
+                            countCosts -= num12 * 60;
 
 
                             if (bolA[0])// (bwrongWord)
                             {
-                                s += " 错字" + wrongWord;
+                                s += " 错字" + wrongWords;
                             }
 
                             if (bolA[1])//  (bcountWord)
                             {
-                                s += " 字数" + actLen;
+                                s += " 字数" + wordsCount;
                             }
 
                             if (bolA[2])
                             {
-                                s += " 键数" + pressCount;
+                                s += " 键数" + keyCount;
                             }
-                            string UseTime = " 用时" + num12 + ":" + string.Format("{0:0.00}", countCost);
+                            string UseTime = " 用时" + num12 + ":" + string.Format("{0:0.00}", countCosts);
                             if (bolA[3])// (bTime )
                             {
                                 s += UseTime;
@@ -797,8 +800,8 @@ namespace FollowTyper
                                 s += str;
                             }
 
-                            _todayWordsCount += actLen;
-                            _ToatlWordsCount += actLen;
+                            _todayWordsCount += wordsCount;
+                            _ToatlWordsCount += wordsCount;
                             s += SignSet();
                             SendToQQ(s);
                             // labelInfo.Text = "成绩格式：中文";
@@ -808,22 +811,22 @@ namespace FollowTyper
                         {
                             s = "Paragraph:" + page + " Speed:";
 
-                            if (wrongWord > 0)
+                            if (wrongWords > 0)
                             {
-                                spd = string.Format("{0:0.00}", num9) + "/";
+                                speed = string.Format("{0:0.00}", num9) + "/";
                                 s = s + string.Format("{0:0.00}", num9) + "/";
                                 num9 = (rightWord * 60.0) / FollowTyperc.countCost;
                                 s = s + string.Format("{0:0.00}", num9);
-                                spd += string.Format("{0:0.00}", num9);
+                                speed += string.Format("{0:0.00}", num9);
                             }
                             else
                             {
                                 s = s + string.Format("{0:0.00}", num9);
-                                spd += string.Format("{0:0.00}", num9);
+                                speed += string.Format("{0:0.00}", num9);
                             }
                             timerSpeed.Stop();
                             _flagSpeed = false;
-                            lableSpeed.Text = spd;
+                            lableSpeed.Text = speed;
                             if (str == "")
                             {
                                 str = " WrongWords:None";
@@ -833,28 +836,28 @@ namespace FollowTyper
                                 str = " Ture[" + str + "] False[" + str2 + "]";
                             }
                             object obj2 = s;
-                            s = string.Concat(new object[] { obj2, " BackSpace:", back, " Hits:", string.Format("{0:0.00}", num10), " WordLength:", string.Format("{0:0.00}", num8) });
-                            double countCost = FollowTyperc.countCost;
+                            s = string.Concat(new object[] { obj2, " BackSpace:", backSpace, " Hits:", string.Format("{0:0.00}", hitKey), " WordLength:", string.Format("{0:0.00}", keyLong) });
+                            double countCosts = FollowTyperc.countCost;
 
-                            num12 = (int)(countCost / 60.0);
-                            countCost -= num12 * 60;
+                            num12 = (int)(countCosts / 60.0);
+                            countCosts -= num12 * 60;
 
 
                             if (bolA[0])// (bwrongWord)
                             {
-                                s += " WrongWordCounts:" + wrongWord;
+                                s += " WrongWordCounts:" + wrongWords;
                             }
 
                             if (bolA[1])//  (bcountWord)
                             {
-                                s += " WordsCounts:" + actLen;
+                                s += " WordsCounts:" + wordsCount;
                             }
 
                             if (bolA[2])
                             {
-                                s += " KeyCounts:" + pressCount;
+                                s += " KeyCounts:" + keyCount;
                             }
-                            string UseTime = " Time:" + num12 + ":" + string.Format("{0:0.00}", countCost);
+                            string UseTime = " Time:" + num12 + ":" + string.Format("{0:0.00}", countCosts);
                             if (bolA[3])// (bTime )
                             {
                                 s += UseTime;
@@ -865,8 +868,8 @@ namespace FollowTyper
                                 s += str;
                             }
 
-                            _todayWordsCount += actLen;
-                            _ToatlWordsCount += actLen;
+                            _todayWordsCount += wordsCount;
+                            _ToatlWordsCount += wordsCount;
                             s += SignSetEnglish();
                             SendToQQ(s);
                             // labelInfo.Text = "成绩格式：英文" ;
@@ -874,25 +877,27 @@ namespace FollowTyper
                         }
                         System.Threading.ThreadPool.QueueUserWorkItem(o =>
                         {
-                            if (dsped > 4)
+                            if (dsped > 4 && IsHandleCreated)
                             {
                                 Invoke(new Action(() =>
                                 {
-                                    new GradesHis().Add(//向数据库中添加任务  
-                                 DateTime.Now.ToString(),
-                                 lablePara.Text,
-                                double.Parse(spd),
-                                back,
-                                double.Parse(string.Format("{0:0.00}", num10)),
-                                 double.Parse(string.Format("{0:0.00}", num8)),
-                                 wrongWord,
-                                 actLen,
-                                 pressCount,
-                                 num12 + ":" + string.Format("{0:0.00}", countCost)
-                                 );
+                                    GradeField gradeField = new GradeField();
+                                    gradeField.CompletedDate = DateTime.Now;
+                                    gradeField.Paragraph = lablePara.Text;
+                                    gradeField.Speed = double.Parse(speed);
+                                    gradeField.BackSpace = backSpace;
+                                    gradeField.HitKey = double.Parse(string.Format("{0:0.00}", hitKey));
+                                    gradeField.KeyLong = double.Parse(string.Format("{0:0.00}", keyLong));
+                                    gradeField.WrongWords = wrongWords;
+                                    gradeField.WordsCount = wordsCount;
+                                    gradeField.KeyCount = keyCount;
+                                    gradeField.CostTime = num12 + ":" + string.Format("{0:0.00}", countCost);
+
+                                    DataOperationDAL.Insert(gradeField);
                                 }));
                             }
                         });
+                       
                         System.Threading.ThreadPool.QueueUserWorkItem(o =>
                         {
                             if (sendafterType)
@@ -906,11 +911,13 @@ namespace FollowTyper
 
 
                         grade = new StringBuilder(s);
-                        averageGrade(num9, num10);
+                        averageGrade(num9, hitKey);
                     }
                 }
             }
-            catch { }
+            catch (Exception ex){
+                MessageBox.Show(ex.Message);
+            }
         }
         private string SignSet()
         {
@@ -1014,10 +1021,10 @@ namespace FollowTyper
         private void GetTypeInfo_WordsCount()
         {
             string tem = "";
-            tem = new GradesHis().command("select sum(wordscount) from grade where datediff('d',date,now())=0");
+            tem = new GradesHis().command("select sum(wordscount) from T_Grade where datediff('d',CompletedDate,now())=0");
             _todayWordsCount = string.IsNullOrEmpty(tem) ? 0 : int.Parse(tem);
-            _ToatlWordsCount = int.Parse(new GradesHis().command("select sum(wordscount) from grade"));
-            _StartDate = _startCountTime = new GradesHis().command("SELECT top 1 Format(date, 'yyyy-mm-dd') FROM grade ORDER BY  Format(date, 'yyyy-mm-dd') asc");
+            _ToatlWordsCount = int.Parse(new GradesHis().command("select sum(wordscount) from T_Grade"));
+            _StartDate = _startCountTime = new GradesHis().command("SELECT top 1 Format(CompletedDate, 'yyyy-mm-dd') FROM T_Grade ORDER BY  Format(CompletedDate, 'yyyy-mm-dd') asc");
 
         }
         private void Frm_Main_FormClosing(object sender, FormClosingEventArgs e)

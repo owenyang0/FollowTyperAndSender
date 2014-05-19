@@ -5,10 +5,10 @@ using System.Data.OleDb;
 
 namespace DataOperation.DAL
 {
-    class SqlHelper
+    static class SqlHelper
     {
         //从App.Config读取数据库连接字符串
-        private static readonly string connStr =
+        private static string connStr = 
             ConfigurationManager.ConnectionStrings["connStr"].ConnectionString;
 
         //使用长度可变参数
