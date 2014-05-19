@@ -238,10 +238,6 @@
       <Project>{69202AE0-E199-4A8A-8836-4218506FA38B}</Project>
       <Name>Win32</Name>
     </ProjectReference>
-    <ProjectReference Include="..\数据库操作\SqlGrades.csproj">
-      <Project>{376B43F9-DDE4-493B-BE74-ECBF28395138}</Project>
-      <Name>SqlGrades</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
