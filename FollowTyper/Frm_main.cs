@@ -485,7 +485,7 @@ namespace FollowTyper
 
             style = retVal.ToString();
             this.richTextBoxGot.Font.Dispose();
-            this.richTextBoxGot.Font = ComMethod.GetFont(family, size, style);
+            this.richTextBoxGot.Font = CommonUtils.GetFont(family, size, style);
             Win32API.GetPrivateProfileString("输入框", "字体", "[Font: Name=SimSun, Size=12, Units=3, GdiCharSet=134, GdiVerticalFont=False]", retVal, 0xff, filePath);
 
             family = retVal.ToString();
@@ -496,7 +496,7 @@ namespace FollowTyper
 
             style = retVal.ToString();
             this.textBoxInput.Font.Dispose();
-            this.textBoxInput.Font = ComMethod.GetFont(family, size, style);
+            this.textBoxInput.Font = CommonUtils.GetFont(family, size, style);
             Win32API.GetPrivateProfileString("输入框", "高度", "null", retVal, 0xff, filePath);
             if (retVal.ToString() != "null")
             {
@@ -969,8 +969,7 @@ namespace FollowTyper
         #region 菜单栏与工具栏
         private void 发送快捷方式到桌面ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Lnk CreateLnk = new Lnk();
-            CreateLnk.CreateShortcutLnk(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory),
+            CommonUtils.CreateShortcutLnk(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory),
                 Application.ExecutablePath, "易跟打器", "欢迎使用", Application.ExecutablePath + ",0");
         }
         private void FollowTyper_Load(object sender, EventArgs e)

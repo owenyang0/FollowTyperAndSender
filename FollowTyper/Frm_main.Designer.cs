@@ -257,7 +257,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 20);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 22);
             // 
             // _nowTime
             // 
@@ -415,7 +415,7 @@
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
             this.toolStripMenuItem1.Text = "载入文本";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.载入练习材料ToolStripMenuItem_Click);
             // 
@@ -426,27 +426,27 @@
             this.凌辱444ToolStripMenuItem1,
             this.疯狂555ToolStripMenuItem1});
             this.单字ToolStripMenuItem.Name = "单字ToolStripMenuItem";
-            this.单字ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.单字ToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.单字ToolStripMenuItem.Text = "常用单字";
             // 
             // 强暴333ToolStripMenuItem1
             // 
             this.强暴333ToolStripMenuItem1.Name = "强暴333ToolStripMenuItem1";
-            this.强暴333ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.强暴333ToolStripMenuItem1.Size = new System.Drawing.Size(118, 22);
             this.强暴333ToolStripMenuItem1.Text = "强暴333";
             this.强暴333ToolStripMenuItem1.Click += new System.EventHandler(this.SelectResources_Click);
             // 
             // 凌辱444ToolStripMenuItem1
             // 
             this.凌辱444ToolStripMenuItem1.Name = "凌辱444ToolStripMenuItem1";
-            this.凌辱444ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.凌辱444ToolStripMenuItem1.Size = new System.Drawing.Size(118, 22);
             this.凌辱444ToolStripMenuItem1.Text = "凌辱444";
             this.凌辱444ToolStripMenuItem1.Click += new System.EventHandler(this.SelectResources_Click);
             // 
             // 疯狂555ToolStripMenuItem1
             // 
             this.疯狂555ToolStripMenuItem1.Name = "疯狂555ToolStripMenuItem1";
-            this.疯狂555ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.疯狂555ToolStripMenuItem1.Size = new System.Drawing.Size(118, 22);
             this.疯狂555ToolStripMenuItem1.Text = "疯狂555";
             this.疯狂555ToolStripMenuItem1.Click += new System.EventHandler(this.SelectResources_Click);
             // 
@@ -457,7 +457,7 @@
             this.十七大报告ToolStripMenuItem1,
             this.儿童是祖国的未来ToolStripMenuItem1});
             this.狂热文章练习ToolStripMenuItem.Name = "狂热文章练习ToolStripMenuItem";
-            this.狂热文章练习ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.狂热文章练习ToolStripMenuItem.Size = new System.Drawing.Size(126, 22);
             this.狂热文章练习ToolStripMenuItem.Text = "狂热文章";
             // 
             // 十六大报告ToolStripMenuItem1
@@ -484,12 +484,12 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(123, 6);
             // 
             // 退出ToolStripMenuItem1
             // 
             this.退出ToolStripMenuItem1.Name = "退出ToolStripMenuItem1";
-            this.退出ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.退出ToolStripMenuItem1.Size = new System.Drawing.Size(126, 22);
             this.退出ToolStripMenuItem1.Text = "退出";
             this.退出ToolStripMenuItem1.Click += new System.EventHandler(this.退出ToolStripMenuItem1_Click);
             // 
@@ -529,13 +529,14 @@
             // 对照框ToolStripMenuItem1
             // 
             this.对照框ToolStripMenuItem1.Name = "对照框ToolStripMenuItem1";
-            this.对照框ToolStripMenuItem1.Size = new System.Drawing.Size(113, 22);
+            this.对照框ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.对照框ToolStripMenuItem1.Text = "对照框";
             this.对照框ToolStripMenuItem1.Click += new System.EventHandler(this.对照框ToolStripMenuItem_Click);
             // 
             // 输入框ToolStripMenuItem1
             // 
             this.输入框ToolStripMenuItem1.Name = "输入框ToolStripMenuItem1";
-            this.输入框ToolStripMenuItem1.Size = new System.Drawing.Size(113, 22);
+            this.输入框ToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
             this.输入框ToolStripMenuItem1.Text = "输入框";
             this.输入框ToolStripMenuItem1.Click += new System.EventHandler(this.输入框ToolStripMenuItem_Click);
             // 
@@ -618,9 +619,9 @@
             // 
             // StatusLabelInfo
             // 
-            this.StatusLabelInfo.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.StatusLabelInfo.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.StatusLabelInfo.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.StatusLabelInfo.IsLink = true;
             this.StatusLabelInfo.Name = "StatusLabelInfo";
@@ -630,9 +631,9 @@
             // labelInfo
             // 
             this.labelInfo.BackColor = System.Drawing.Color.LightGray;
-            this.labelInfo.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.labelInfo.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.labelInfo.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.labelInfo.Name = "labelInfo";
             this.labelInfo.Size = new System.Drawing.Size(17, 19);
@@ -640,9 +641,9 @@
             // 
             // labWords
             // 
-            this.labWords.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right)
-                        | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
+            this.labWords.BorderSides = ((System.Windows.Forms.ToolStripStatusLabelBorderSides)((((System.Windows.Forms.ToolStripStatusLabelBorderSides.Left | System.Windows.Forms.ToolStripStatusLabelBorderSides.Top) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Right) 
+            | System.Windows.Forms.ToolStripStatusLabelBorderSides.Bottom)));
             this.labWords.BorderStyle = System.Windows.Forms.Border3DStyle.SunkenOuter;
             this.labWords.Name = "labWords";
             this.labWords.Size = new System.Drawing.Size(17, 19);

@@ -108,7 +108,7 @@
     <Compile Include="UpdateBox.Designer.cs">
       <DependentUpon>UpdateBox.cs</DependentUpon>
     </Compile>
-    <Compile Include="ComMethod.cs" />
+    <Compile Include="CommonUtils.cs" />
     <Compile Include="Frm_main.cs">
       <SubType>Form</SubType>
     </Compile>
