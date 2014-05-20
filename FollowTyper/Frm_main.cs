@@ -377,8 +377,7 @@ namespace FollowTyper
             }
             if (binput < 4)
             {
-                Win32API input = new Win32API();
-                input.InputLan(InputMethod, this.textBoxInput.Handle);
+                new Win32API().SetInputLanguage(InputMethod, textBoxInput.Handle);
                 binput++;
             }
         }
@@ -1033,8 +1032,8 @@ namespace FollowTyper
             // SignAndSetInput set = new SignAndSetInput(Sign, InputMethod, flagVersion); //注册form2_MyEvent方法的MyEvent事件 
             //set.MyEventSign += new MyDelegateSign(set_MyEventSign);
             set.EventKeys += new delegateHotKey(set_EventKeys);
-            set.eventSend += new delegateSendStyle(set_eventSend);
-            set.eventBool += new deleBool(set_eventBool);
+            set.EventSend += new delegateSendStyle(set_eventSend);
+            set.EventBool += new deleBool(set_eventBool);
             Win32API.UnregisterHotKey(base.Handle, 100);
             Win32API.UnregisterHotKey(base.Handle, 99);
             set.Show();

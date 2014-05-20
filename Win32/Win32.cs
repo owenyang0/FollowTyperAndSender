@@ -104,17 +104,17 @@ namespace Win32
         [DllImport("imm32.dll")]
         public static extern bool ImmSetConversionStatus(IntPtr hIMC, int conversion, int sentence);
 
-        public void InputLan(string InputL, IntPtr intptr)
+        public void SetInputLanguage(string inputL, IntPtr intptr)
         {
-            foreach (InputLanguage iL in InputLanguage.InstalledInputLanguages.Cast<InputLanguage>().Where(iL => iL.LayoutName == InputL))
+            foreach (InputLanguage inputLanguage in InputLanguage.InstalledInputLanguages.Cast<InputLanguage>().Where(iL => iL.LayoutName == inputL))
             {
-                InputLanguage.CurrentInputLanguage = iL;
+                InputLanguage.CurrentInputLanguage = inputLanguage;
                 break;
             }
 
             IntPtr prt = ImmGetContext(intptr);
-            int iMode = 1025;
-            int iSentence = 0;
+            const int iMode = 1025;
+            const int iSentence = 0;
             ImmSetConversionStatus(prt, iMode, iSentence);
         }
         #endregion
