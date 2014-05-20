@@ -1,52 +1,37 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Win32;
+
 namespace FollowTyper
 {
     public delegate void MyDelegateSign(string Sign, string InputMethod, bool flagVersion); //定义该委托的事件    
     public delegate void delegateHotKey(Keys keyLoad, Keys GetNM, Keys keySend); //定义该委托的事件 
-    public delegate void delegateSendStyle(bool typesend,bool sigle,bool sendtorich); //定义该委托的事件 
+    public delegate void delegateSendStyle(bool typesend, bool sigle, bool sendtorich); //定义该委托的事件 
     public delegate void deleBool(bool[] bola); //定义该委托的事件 
 
 
     public partial class Setting : Form
     {
-        //bool flagVersion;
         string filePath = Application.StartupPath + @"\TyperConfig.ini";
-        //public event MyDelegateSign MyEventSign;
         public event delegateHotKey EventKeys;
         public event delegateSendStyle eventSend;
         public event deleBool eventBool;
         private static bool[] bolA = new bool[8];
 
-        public Setting()//(string Sign ,string InputMethod,bool flagVersion)
+        public Setting()
         {
             InitializeComponent();
         }
-        //    this.tbxSign.Text = Sign;
-        //    this.cmbInput.Text = InputMethod;
-        //    rdb2011.Checked = flagVersion;
-        //}
-        //public Setting(Keys keyLoad, Keys GetNM, Keys keySend)
-        //{
-        //    //InitializeComponent();
-        //    this.tbxHotKeyGetText.Text = keyLoad.ToString();
-        //    this.tbxHotKeyGetGN.Text = GetNM.ToString();
-        //    this.tbxHotKeySend.Text = keySend.ToString();
-        //}
+
         private void Interpretation_Paint(object sender, PaintEventArgs e)
         {
-            Pen blackpen = new System.Drawing.Pen(Color.LightGray, 1);
+            Pen blackpen = new Pen(Color.LightGray, 1);
             Graphics graphics = this.CreateGraphics();
-            graphics.DrawLine(blackpen, 110, 0, 110, this.Height );
-            graphics.DrawLine(blackpen, 110, 190, this .Width  , 190);
-            btnBasic.BackColor  = Color.LightGray; 
+            graphics.DrawLine(blackpen, 110, 0, 110, this.Height);
+            graphics.DrawLine(blackpen, 110, 190, this.Width, 190);
+            btnBasic.BackColor = Color.LightGray;
         }
         private void btnBasic_Click(object sender, EventArgs e)
         {
@@ -114,7 +99,7 @@ namespace FollowTyper
 
         private void btnSure_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
 
         private void Setting_Load(object sender, EventArgs e)
@@ -125,7 +110,7 @@ namespace FollowTyper
             }
             cmbInput.Text = cmbInput.Items[0].ToString();
             StringBuilder retVal = new StringBuilder(0xff);
-           
+
             Win32API.GetPrivateProfileString("功能", "个性签名", "无", retVal, 0xff, filePath);
             tbxSign.Text = retVal.ToString();
             Win32API.GetPrivateProfileString("功能", "输入法", "无", retVal, 0xff, filePath);
@@ -134,7 +119,6 @@ namespace FollowTyper
             tbxHotKeyGetText.Text = retVal.ToString();
             Win32API.GetPrivateProfileString("功能", "热键发送", "F2", retVal, 0xff, filePath);
             tbxHotKeySend.Text = retVal.ToString();
-
             Win32API.GetPrivateProfileString("发送设置", "错字", "true", retVal, 0xff, filePath);
             cbxWrongW.Checked = bool.Parse(retVal.ToString());
             Win32API.GetPrivateProfileString("发送设置", "正误", "true", retVal, 0xff, filePath);
@@ -151,30 +135,21 @@ namespace FollowTyper
             cbxTime.Checked = bool.Parse(retVal.ToString());
             Win32API.GetPrivateProfileString("发送设置", "显示尾巴", "true", retVal, 0xff, filePath);
             cbxChineseEng.Checked = bool.Parse(retVal.ToString());
-            Win32API .GetPrivateProfileString ("发文","打完发送","false",retVal ,0xff,filePath );
-            cbxTypeSend .Checked =bool .Parse (retVal.ToString ());
-             Win32API .GetPrivateProfileString ("发文","发送单字","false",retVal ,0xff,filePath );
-            cbxSigleSend.Checked =bool .Parse (retVal.ToString ());
+            Win32API.GetPrivateProfileString("发文", "打完发送", "false", retVal, 0xff, filePath);
+            cbxTypeSend.Checked = bool.Parse(retVal.ToString());
+            Win32API.GetPrivateProfileString("发文", "发送单字", "false", retVal, 0xff, filePath);
+            cbxSigleSend.Checked = bool.Parse(retVal.ToString());
             Win32API.GetPrivateProfileString("发文", "文本框获取", "false", retVal, 0xff, filePath);
             cbxSendtoRich.Checked = bool.Parse(retVal.ToString());
             Win32API.GetPrivateProfileString("功能", "热键获取窗口", "F12", retVal, 0xff, filePath);
             tbxHotKeyGetGN.Text = retVal.ToString();
-           
-        }
 
-        private void Setting_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            writeIni();
-            //MyEventSign(this.tbxSign.Text, this.cmbInput.Text, rdb2011.Checked);
-            eventBool(bolA);
-            eventSend(cbxTypeSend.Checked, cbxSigleSend.Checked,cbxSendtoRich .Checked);
-            EventKeys((Keys)Enum.Parse(typeof(Keys), this.tbxHotKeyGetText.Text), (Keys)Enum.Parse(typeof(Keys), this.tbxHotKeyGetGN.Text), (Keys)Enum.Parse(typeof(Keys), this.tbxHotKeySend.Text));
         }
-        private void writeIni()
+        
+        private void WriteConfigFile()
         {
             Win32API.WritePrivateProfileString("功能", "个性签名", tbxSign.Text, filePath);
             Win32API.WritePrivateProfileString("功能", "输入法", cmbInput.Text, filePath);
-           // win32Normal.WritePrivateProfileString("功能", "版本", rdb2011.Checked.ToString(), filePath);
             Win32API.WritePrivateProfileString("功能", "热键载入", tbxHotKeyGetText.Text, filePath);
             Win32API.WritePrivateProfileString("功能", "热键获取窗口", tbxHotKeyGetGN.Text, filePath);
             Win32API.WritePrivateProfileString("功能", "热键发送", tbxHotKeySend.Text, filePath);
@@ -186,16 +161,24 @@ namespace FollowTyper
             Win32API.WritePrivateProfileString("发送设置", "签名", cbxSign.Checked.ToString(), filePath);
             Win32API.WritePrivateProfileString("发送设置", "用时", cbxTime.Checked.ToString(), filePath);
             Win32API.WritePrivateProfileString("发送设置", "显示尾巴", cbxChineseEng.Checked.ToString(), filePath);
-            Win32API.WritePrivateProfileString("发文", "打完发送", cbxTypeSend .Checked .ToString (), filePath);
+            Win32API.WritePrivateProfileString("发文", "打完发送", cbxTypeSend.Checked.ToString(), filePath);
             Win32API.WritePrivateProfileString("发文", "发送单字", cbxSigleSend.Checked.ToString(), filePath);
             Win32API.WritePrivateProfileString("发文", "文本框获取", cbxSigleSend.Checked.ToString(), filePath);
         }
 
-        
+        private void Setting_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            WriteConfigFile();
+            eventBool(bolA);
+            eventSend(cbxTypeSend.Checked, cbxSigleSend.Checked, cbxSendtoRich.Checked);
+            EventKeys((Keys)Enum.Parse(typeof(Keys), this.tbxHotKeyGetText.Text), (Keys)Enum.Parse(typeof(Keys), this.tbxHotKeyGetGN.Text), (Keys)Enum.Parse(typeof(Keys), this.tbxHotKeySend.Text));
+        }
+
         private void tbxHotKey_KeyUp(object sender, KeyEventArgs e)
         {
             tbxHotKeyGetText.Text = e.KeyCode.ToString();
         }
+
         private void checkBox6_CheckedChanged(object sender, EventArgs e)
         {
             foreach (CheckBox cbx in groupBox6.Controls)
@@ -204,6 +187,7 @@ namespace FollowTyper
 
             }
         }
+
         private void tbxHotKeyGetGN_KeyUp(object sender, KeyEventArgs e)
         {
             tbxHotKeyGetGN.Text = e.KeyCode.ToString();
