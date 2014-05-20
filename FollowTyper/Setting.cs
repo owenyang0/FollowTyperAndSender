@@ -126,38 +126,38 @@ namespace FollowTyper
             cmbInput.Text = cmbInput.Items[0].ToString();
             StringBuilder retVal = new StringBuilder(0xff);
            
-            win32Normal.GetPrivateProfileString("功能", "个性签名", "无", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("功能", "个性签名", "无", retVal, 0xff, filePath);
             tbxSign.Text = retVal.ToString();
-            win32Normal.GetPrivateProfileString("功能", "输入法", "无", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("功能", "输入法", "无", retVal, 0xff, filePath);
             cmbInput.Text = retVal.ToString();
-            win32Normal.GetPrivateProfileString("功能", "热键载入", "F4", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("功能", "热键载入", "F4", retVal, 0xff, filePath);
             tbxHotKeyGetText.Text = retVal.ToString();
-            win32Normal.GetPrivateProfileString("功能", "热键发送", "F2", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("功能", "热键发送", "F2", retVal, 0xff, filePath);
             tbxHotKeySend.Text = retVal.ToString();
 
-            win32Normal.GetPrivateProfileString("发送设置", "错字", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "错字", "true", retVal, 0xff, filePath);
             cbxWrongW.Checked = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "正误", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "正误", "true", retVal, 0xff, filePath);
             cbxWroRigh.Checked = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "字数", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "字数", "true", retVal, 0xff, filePath);
             cbxCountWords.Checked = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "签名", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "签名", "true", retVal, 0xff, filePath);
             cbxSign.Checked = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "输入法", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "输入法", "true", retVal, 0xff, filePath);
             cbxInput.Checked = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "键数", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "键数", "true", retVal, 0xff, filePath);
             cbxCountKey.Checked = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "用时", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "用时", "true", retVal, 0xff, filePath);
             cbxTime.Checked = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "显示尾巴", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "显示尾巴", "true", retVal, 0xff, filePath);
             cbxChineseEng.Checked = bool.Parse(retVal.ToString());
-            win32Normal .GetPrivateProfileString ("发文","打完发送","false",retVal ,0xff,filePath );
+            Win32API .GetPrivateProfileString ("发文","打完发送","false",retVal ,0xff,filePath );
             cbxTypeSend .Checked =bool .Parse (retVal.ToString ());
-             win32Normal .GetPrivateProfileString ("发文","发送单字","false",retVal ,0xff,filePath );
+             Win32API .GetPrivateProfileString ("发文","发送单字","false",retVal ,0xff,filePath );
             cbxSigleSend.Checked =bool .Parse (retVal.ToString ());
-            win32Normal.GetPrivateProfileString("发文", "文本框获取", "false", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发文", "文本框获取", "false", retVal, 0xff, filePath);
             cbxSendtoRich.Checked = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("功能", "热键获取窗口", "F12", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("功能", "热键获取窗口", "F12", retVal, 0xff, filePath);
             tbxHotKeyGetGN.Text = retVal.ToString();
            
         }
@@ -172,23 +172,23 @@ namespace FollowTyper
         }
         private void writeIni()
         {
-            win32Normal.WritePrivateProfileString("功能", "个性签名", tbxSign.Text, filePath);
-            win32Normal.WritePrivateProfileString("功能", "输入法", cmbInput.Text, filePath);
+            Win32API.WritePrivateProfileString("功能", "个性签名", tbxSign.Text, filePath);
+            Win32API.WritePrivateProfileString("功能", "输入法", cmbInput.Text, filePath);
            // win32Normal.WritePrivateProfileString("功能", "版本", rdb2011.Checked.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("功能", "热键载入", tbxHotKeyGetText.Text, filePath);
-            win32Normal.WritePrivateProfileString("功能", "热键获取窗口", tbxHotKeyGetGN.Text, filePath);
-            win32Normal.WritePrivateProfileString("功能", "热键发送", tbxHotKeySend.Text, filePath);
-            win32Normal.WritePrivateProfileString("发送设置", "错字", cbxWrongW.Checked.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("发送设置", "正误", cbxWroRigh.Checked.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("发送设置", "字数", cbxCountWords.Checked.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("发送设置", "键数", cbxCountKey.Checked.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("发送设置", "输入法", cbxInput.Checked.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("发送设置", "签名", cbxSign.Checked.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("发送设置", "用时", cbxTime.Checked.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("发送设置", "显示尾巴", cbxChineseEng.Checked.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("发文", "打完发送", cbxTypeSend .Checked .ToString (), filePath);
-            win32Normal.WritePrivateProfileString("发文", "发送单字", cbxSigleSend.Checked.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("发文", "文本框获取", cbxSigleSend.Checked.ToString(), filePath);
+            Win32API.WritePrivateProfileString("功能", "热键载入", tbxHotKeyGetText.Text, filePath);
+            Win32API.WritePrivateProfileString("功能", "热键获取窗口", tbxHotKeyGetGN.Text, filePath);
+            Win32API.WritePrivateProfileString("功能", "热键发送", tbxHotKeySend.Text, filePath);
+            Win32API.WritePrivateProfileString("发送设置", "错字", cbxWrongW.Checked.ToString(), filePath);
+            Win32API.WritePrivateProfileString("发送设置", "正误", cbxWroRigh.Checked.ToString(), filePath);
+            Win32API.WritePrivateProfileString("发送设置", "字数", cbxCountWords.Checked.ToString(), filePath);
+            Win32API.WritePrivateProfileString("发送设置", "键数", cbxCountKey.Checked.ToString(), filePath);
+            Win32API.WritePrivateProfileString("发送设置", "输入法", cbxInput.Checked.ToString(), filePath);
+            Win32API.WritePrivateProfileString("发送设置", "签名", cbxSign.Checked.ToString(), filePath);
+            Win32API.WritePrivateProfileString("发送设置", "用时", cbxTime.Checked.ToString(), filePath);
+            Win32API.WritePrivateProfileString("发送设置", "显示尾巴", cbxChineseEng.Checked.ToString(), filePath);
+            Win32API.WritePrivateProfileString("发文", "打完发送", cbxTypeSend .Checked .ToString (), filePath);
+            Win32API.WritePrivateProfileString("发文", "发送单字", cbxSigleSend.Checked.ToString(), filePath);
+            Win32API.WritePrivateProfileString("发文", "文本框获取", cbxSigleSend.Checked.ToString(), filePath);
         }
 
         

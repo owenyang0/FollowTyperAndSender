@@ -53,7 +53,7 @@ namespace FollowTyper
         private void RefreshBox_FormClosing(object sender, FormClosingEventArgs e)
         {
             string filePath = Application.StartupPath + @"\TyperConfig.ini";
-            win32Normal.WritePrivateProfileString("更新", "不再显示", cbxpromot.Checked.ToString(), filePath);
+            Win32API.WritePrivateProfileString("更新", "不再显示", cbxpromot.Checked.ToString(), filePath);
         }
 
 

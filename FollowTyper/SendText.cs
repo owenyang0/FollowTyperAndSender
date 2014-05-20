@@ -309,9 +309,9 @@ namespace FollowTyper
         }
         private void SendToQQ(string s)
         {
-            findPtr = win32Normal.FindWindow("TXGuiFoundation", cbxFrom.Text );// labelGroupName.Text);
-            win32Normal.SetForegroundWindow(findPtr);
-            //win32Normal.ShowWindow(intp, ConstFlag.SW_SHOWNORMAL);
+            findPtr = Win32API.FindWindow("TXGuiFoundation", cbxFrom.Text );// labelGroupName.Text);
+            Win32API.SetForegroundWindow(findPtr);
+            //win32Normal.ShowWindow(intp, WindowConstFlag.SW_SHOWNORMAL);
 
             Clipboard.Clear();
             Clipboard.SetText(s);
@@ -322,7 +322,7 @@ namespace FollowTyper
             //int WM_KEYUP = 0x101;
             const int WM_PASTE = 770;//粘贴
            // win32Normal.SetForegroundWindow(findPtr);//WM_LBUTTONDOWN   EN_KILLFOCUS   $10000000
-            win32Normal.PostMessage(findPtr, WM_PASTE, 0, null);
+            Win32API.PostMessage(findPtr, WM_PASTE, 0, null);
             //win32Normal.PostMessage(findPtr, WM_KEYDOWN, VK_RETURN, null);
             SendKeys.SendWait("^a^v%s");
         }
@@ -331,7 +331,7 @@ namespace FollowTyper
         {
             SendFinal();
             lasttime = (int)numericUpDown1.Value;
-            win32Normal.SetForegroundWindow(base .Handle);
+            Win32API.SetForegroundWindow(base .Handle);
         }
 
         private void timerLastTime_Tick(object sender, EventArgs e)
@@ -380,13 +380,13 @@ namespace FollowTyper
         {
             int i = 0;
             cbxFrom.Items.Clear();
-            win32Normal api2 = new win32Normal();
+            Win32API api2 = new Win32API();
             CallBack myCallBack = new CallBack(api2.Report);
-            win32Normal.EnumWindows(myCallBack, 0);
-            while (!string.IsNullOrEmpty(win32Normal.GroupName[i]))
+            Win32API.EnumWindows(myCallBack, 0);
+            while (!string.IsNullOrEmpty(Win32API.GroupNames[i]))
             {
-                //GName.Add(win32Normal.GroupName[i++]);
-                cbxFrom.Items.Add(win32Normal.GroupName[i++]);
+                //GName.Add(win32Normal.GroupNames[i++]);
+                cbxFrom.Items.Add(Win32API.GroupNames[i++]);
             }
             //labelGroupName.Text = GName[++GNum < GName.Count ? GNum : (GNum = 0)].ToString();
             cbxFrom .Text = cbxFrom.Items[0].ToString();

@@ -226,6 +226,10 @@
       <Project>{6246c852-2ff2-4769-9ade-ed0649194d7e}</Project>
       <Name>AutoUpdate</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataOperationUgly\SqlGrades.csproj">
+      <Project>{376b43f9-dde4-493b-be74-ecbf28395138}</Project>
+      <Name>SqlGrades</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataOperation\DataOperation.csproj">
       <Project>{c90b71be-e250-40dd-9e7b-1ef8825fda7a}</Project>
       <Name>DataOperation</Name>

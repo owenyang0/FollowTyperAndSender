@@ -1,24 +1,17 @@
-﻿using System;
+﻿using AutoUpdate;
+using DataOperation.DAL;
+using DataOperation.Model;
+using SqlGrades;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Windows.Forms;
-
-using System.Collections;
-using System.Text.RegularExpressions;
 using System.IO;
-using System.Threading;
-using IWshRuntimeLibrary;
-using System.Runtime.InteropServices;
-using SqlGrades;
-using AutoUpdate;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Windows.Forms;
 using Win32;
-using DataOperation.Model;
-using DataOperation.DAL;
-//using DataOperation.Model;
 
 namespace FollowTyper
 {
@@ -148,16 +141,16 @@ namespace FollowTyper
             {
                 int i = 0;
                 ArrayList GName = new ArrayList();
-                win32Normal api2 = new win32Normal();
+                Win32API api2 = new Win32API();
                 CallBack myCallBack = new CallBack(api2.Report);
-                win32Normal.EnumWindows(myCallBack, 0);
-                while (!string.IsNullOrEmpty(win32Normal.GroupName[i]))
+                Win32API.EnumWindows(myCallBack, 0);
+                while (!string.IsNullOrEmpty(Win32API.GroupNames[i]))
                 {
-                    GName.Add(win32Normal.GroupName[i++]);
+                    GName.Add(Win32API.GroupNames[i++]);
                 }
                 labelGroupName.Text = GName[++GNum < GName.Count ? GNum : (GNum = 0)].ToString();
 
-                findPtr = win32Normal.FindWindow("TXGuiFoundation", labelGroupName.Text);
+                findPtr = Win32API.FindWindow("TXGuiFoundation", labelGroupName.Text);
 
 
 
@@ -171,8 +164,8 @@ namespace FollowTyper
         {
             if (this.labelGroupName.Text != "未找到")
             {
-                win32Normal.SetForegroundWindow(findPtr);
-                win32Normal.ShowWindow(findPtr, ConstFlag.SW_SHOWNORMAL);
+                Win32API.SetForegroundWindow(findPtr);
+                Win32API.ShowWindow(findPtr, WindowStateFlag.SW_SHOWNORMAL);
 
 
                 Clipboard.Clear();
@@ -184,7 +177,7 @@ namespace FollowTyper
                 //int WM_KEYUP = 0x101;
                 const int WM_PASTE = 770;//粘贴
                 // win32Normal.SetForegroundWindow(findPtr);//WM_LBUTTONDOWN   EN_KILLFOCUS   $10000000
-                win32Normal.PostMessage(findPtr, WM_PASTE, 0, null);
+                Win32API.PostMessage(findPtr, WM_PASTE, 0, null);
                 // win32Normal.PostMessage(findPtr, WM_KEYDOWN, VK_RETURN, null);
                 SendKeys.SendWait("^a^v%s");
 
@@ -246,20 +239,20 @@ namespace FollowTyper
 
             if (findPtr != IntPtr.Zero)
             {
-                win32Normal.SetForegroundWindow(findPtr);
-                win32Normal.ShowWindow(findPtr, ConstFlag.SW_SHOWNORMAL);
-                win32Normal.GetWindowRect(findPtr, ref rect);
+                Win32API.SetForegroundWindow(findPtr);
+                Win32API.ShowWindow(findPtr, WindowStateFlag.SW_SHOWNORMAL);
+                Win32API.GetWindowRect(findPtr, ref rect);
                 //SendKeys.SendWait(" {BACKSPACE}{TAB}{TAB}{TAB}{TAB}");
                 rectOld.X = MousePosition.X;
                 rectOld.Y = MousePosition.Y;
-                win32Normal.SetCursorPos(rect.X + 320, rect.Y + 200);
-                win32Normal.mouse_event(MouseEventFlag.LeftDown, rect.X, rect.Y, 0, 0);
-                win32Normal.mouse_event(MouseEventFlag.LeftUp, rect.X, rect.Y, 0, 0);
+                Win32API.SetCursorPos(rect.X + 320, rect.Y + 200);
+                Win32API.mouse_event(MouseEventFlag.LeftDown, rect.X, rect.Y, 0, 0);
+                Win32API.mouse_event(MouseEventFlag.LeftUp, rect.X, rect.Y, 0, 0);
                 SendKeys.SendWait("^a");
                 SendKeys.SendWait("^c");
                 SendKeys.SendWait("^a");
                 SendKeys.SendWait("^c");
-                win32Normal.SetCursorPos(rectOld.X, rectOld.Y);
+                Win32API.SetCursorPos(rectOld.X, rectOld.Y);
                 input = Clipboard.GetText();
             }
             return this.GetParagram(input);
@@ -363,7 +356,7 @@ namespace FollowTyper
             {
                 richTextBoxGot.Text = GetParagram(MsgToQQ);
             }
-            win32Normal.SetForegroundWindow(base.Handle); this.Reset();
+            Win32API.SetForegroundWindow(base.Handle); this.Reset();
 
             textBoxInput.Focus();
         }
@@ -379,12 +372,12 @@ namespace FollowTyper
             if (((str3 = m.WParam.ToString()) != null) && (str3 == "99"))
             {
                 SendText();
-                win32Normal.SetForegroundWindow(base.Handle);
+                Win32API.SetForegroundWindow(base.Handle);
 
             }
             if (binput < 4)
             {
-                win32Normal input = new win32Normal();
+                Win32API input = new Win32API();
                 input.InputLan(InputMethod, this.textBoxInput.Handle);
                 binput++;
             }
@@ -398,7 +391,7 @@ namespace FollowTyper
 
             }
             this.Reset();
-            win32Normal.SetForegroundWindow(base.Handle);
+            Win32API.SetForegroundWindow(base.Handle);
         }
         protected override void WndProc(ref Message m)
         {
@@ -419,21 +412,21 @@ namespace FollowTyper
 
             StringBuilder retVal = new StringBuilder(0xff);
             string filePath = Application.StartupPath + @"\TyperConfig.ini";
-            win32Normal.WritePrivateProfileString("跟打器", "高度", this.Height.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("跟打器", "宽度", this.Width.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("跟打器", "X", this.Location.X.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("跟打器", "Y", this.Location.Y.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("对照框", "字体", this.richTextBoxGot.Font.FontFamily.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("对照框", "大小", this.richTextBoxGot.Font.Size.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("对照框", "风格", this.richTextBoxGot.Font.Style.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("输入框", "字体", this.textBoxInput.Font.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("输入框", "大小", this.textBoxInput.Font.Size.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("输入框", "风格", this.textBoxInput.Font.Style.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("输入框", "高度", this.splitContainer1.SplitterDistance.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("成绩列表", "高度", this.splitContainer2.SplitterDistance.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("功能", "主题", SubName, filePath);
-            win32Normal.WritePrivateProfileString("更新", "日期", DateTime.Now.DayOfYear.ToString(), filePath);
-            win32Normal.WritePrivateProfileString("语言选择", "英文显示", english_Show.ToString(), filePath);
+            Win32API.WritePrivateProfileString("跟打器", "高度", this.Height.ToString(), filePath);
+            Win32API.WritePrivateProfileString("跟打器", "宽度", this.Width.ToString(), filePath);
+            Win32API.WritePrivateProfileString("跟打器", "X", this.Location.X.ToString(), filePath);
+            Win32API.WritePrivateProfileString("跟打器", "Y", this.Location.Y.ToString(), filePath);
+            Win32API.WritePrivateProfileString("对照框", "字体", this.richTextBoxGot.Font.FontFamily.ToString(), filePath);
+            Win32API.WritePrivateProfileString("对照框", "大小", this.richTextBoxGot.Font.Size.ToString(), filePath);
+            Win32API.WritePrivateProfileString("对照框", "风格", this.richTextBoxGot.Font.Style.ToString(), filePath);
+            Win32API.WritePrivateProfileString("输入框", "字体", this.textBoxInput.Font.ToString(), filePath);
+            Win32API.WritePrivateProfileString("输入框", "大小", this.textBoxInput.Font.Size.ToString(), filePath);
+            Win32API.WritePrivateProfileString("输入框", "风格", this.textBoxInput.Font.Style.ToString(), filePath);
+            Win32API.WritePrivateProfileString("输入框", "高度", this.splitContainer1.SplitterDistance.ToString(), filePath);
+            Win32API.WritePrivateProfileString("成绩列表", "高度", this.splitContainer2.SplitterDistance.ToString(), filePath);
+            Win32API.WritePrivateProfileString("功能", "主题", SubName, filePath);
+            Win32API.WritePrivateProfileString("更新", "日期", DateTime.Now.DayOfYear.ToString(), filePath);
+            Win32API.WritePrivateProfileString("语言选择", "英文显示", english_Show.ToString(), filePath);
 
             // win32Normal.GetPrivateProfileString("打字统计", "开始日期", null, retVal, 0xff, filePath);
             //     if (string.IsNullOrEmpty(retVal.ToString()))
@@ -452,26 +445,26 @@ namespace FollowTyper
             float size = 0f;
             string style = "";
             int x = 0, y = 0;
-            win32Normal.GetPrivateProfileString("跟打器", "高度", "351", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("跟打器", "高度", "351", retVal, 0xff, filePath);
             this.Height = Convert.ToInt32(retVal.ToString());
-            win32Normal.GetPrivateProfileString("跟打器", "宽度", "538", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("跟打器", "宽度", "538", retVal, 0xff, filePath);
             this.Width = Convert.ToInt32(retVal.ToString());
-            win32Normal.GetPrivateProfileString("跟打器", "X", "50", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("跟打器", "X", "50", retVal, 0xff, filePath);
             x = Convert.ToInt32(retVal.ToString());
-            win32Normal.GetPrivateProfileString("跟打器", "Y", "50", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("跟打器", "Y", "50", retVal, 0xff, filePath);
             y = Convert.ToInt32(retVal.ToString());
             //this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(x, y);
-            win32Normal.GetPrivateProfileString("功能", "个性签名", "无", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("功能", "个性签名", "无", retVal, 0xff, filePath);
             Sign = retVal.ToString();
-            win32Normal.GetPrivateProfileString("功能", "输入法", "无", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("功能", "输入法", "无", retVal, 0xff, filePath);
             InputMethod = retVal.ToString();
-            win32Normal.GetPrivateProfileString("功能", "热键载入", "F4", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("功能", "热键载入", "F4", retVal, 0xff, filePath);
             keyLoad = (Keys)Enum.Parse(typeof(Keys), retVal.ToString());
-            win32Normal.GetPrivateProfileString("功能", "热键发送", "F2", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("功能", "热键发送", "F2", retVal, 0xff, filePath);
             keySend = (Keys)Enum.Parse(typeof(Keys), retVal.ToString());
 
-            win32Normal.GetPrivateProfileString("功能", "热键获取窗口", "F12", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("功能", "热键获取窗口", "F12", retVal, 0xff, filePath);
 
             keyGetGN = (Keys)Enum.Parse(typeof(Keys), retVal.ToString());//return false;
 
@@ -479,68 +472,68 @@ namespace FollowTyper
             //win32Normal.GetPrivateProfileString("功能", "版本", "true", retVal, 0xff, filePath);
 
             //Boolean.TryParse(retVal.ToString(), out flagVersion);
-            win32Normal.GetPrivateProfileString("功能", "主题", "purple", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("功能", "主题", "purple", retVal, 0xff, filePath);
 
             SubName = retVal.ToString();
-            win32Normal.GetPrivateProfileString("对照框", "字体", "[Font: Name=SimSun, Size=16, Units=3, GdiCharSet=134, GdiVerticalFont=False]", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("对照框", "字体", "[Font: Name=SimSun, Size=16, Units=3, GdiCharSet=134, GdiVerticalFont=False]", retVal, 0xff, filePath);
 
             family = retVal.ToString();
-            win32Normal.GetPrivateProfileString("对照框", "大小", "16", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("对照框", "大小", "16", retVal, 0xff, filePath);
 
             size = (float)Convert.ToDouble(retVal.ToString());
-            win32Normal.GetPrivateProfileString("对照框", "风格", "=Regular", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("对照框", "风格", "=Regular", retVal, 0xff, filePath);
 
             style = retVal.ToString();
             this.richTextBoxGot.Font.Dispose();
             this.richTextBoxGot.Font = ComMethod.GetFont(family, size, style);
-            win32Normal.GetPrivateProfileString("输入框", "字体", "[Font: Name=SimSun, Size=12, Units=3, GdiCharSet=134, GdiVerticalFont=False]", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("输入框", "字体", "[Font: Name=SimSun, Size=12, Units=3, GdiCharSet=134, GdiVerticalFont=False]", retVal, 0xff, filePath);
 
             family = retVal.ToString();
-            win32Normal.GetPrivateProfileString("输入框", "大小", "12", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("输入框", "大小", "12", retVal, 0xff, filePath);
 
             size = (float)Convert.ToDouble(retVal.ToString());
-            win32Normal.GetPrivateProfileString("输入框", "风格", "Regular", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("输入框", "风格", "Regular", retVal, 0xff, filePath);
 
             style = retVal.ToString();
             this.textBoxInput.Font.Dispose();
             this.textBoxInput.Font = ComMethod.GetFont(family, size, style);
-            win32Normal.GetPrivateProfileString("输入框", "高度", "null", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("输入框", "高度", "null", retVal, 0xff, filePath);
             if (retVal.ToString() != "null")
             {
                 this.splitContainer1.SplitterDistance = Convert.ToInt32(retVal.ToString());
             }
-            win32Normal.GetPrivateProfileString("成绩列表", "高度", "null", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("成绩列表", "高度", "null", retVal, 0xff, filePath);
             if (retVal.ToString() != "null")
             {
                 if (this.splitContainer2.Panel2MinSize < this.splitContainer2.SplitterDistance && this.splitContainer2.SplitterDistance < Width - this.splitContainer2.Panel2MinSize)
                     this.splitContainer2.SplitterDistance = Convert.ToInt32(retVal.ToString());
                 // MessageBox.Show(this.splitContainer2.Panel2MinSize.ToString(), this.splitContainer2.SplitterDistance.ToString());
             }
-            win32Normal.GetPrivateProfileString("发送设置", "错字", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "错字", "true", retVal, 0xff, filePath);
             bolA[0] = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "字数", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "字数", "true", retVal, 0xff, filePath);
             bolA[1] = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "键数", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "键数", "true", retVal, 0xff, filePath);
             bolA[2] = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "用时", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "用时", "true", retVal, 0xff, filePath);
             bolA[3] = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "正误", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "正误", "true", retVal, 0xff, filePath);
             bolA[4] = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "输入法", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "输入法", "true", retVal, 0xff, filePath);
             bolA[5] = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "签名", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "签名", "true", retVal, 0xff, filePath);
             bolA[6] = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发送设置", "显示尾巴", "true", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发送设置", "显示尾巴", "true", retVal, 0xff, filePath);
             bolA[7] = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发文", "打完发送", "false", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发文", "打完发送", "false", retVal, 0xff, filePath);
             sendafterType = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发文", "发送单字", "false", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发文", "发送单字", "false", retVal, 0xff, filePath);
             sendSingle = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("发文", "文本框获取", "false", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("发文", "文本框获取", "false", retVal, 0xff, filePath);
             sendtoRich = bool.Parse(retVal.ToString());
-            win32Normal.GetPrivateProfileString("更新", "日期", "1", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("更新", "日期", "1", retVal, 0xff, filePath);
             int.TryParse(retVal.ToString(), out nowtime);
-            win32Normal.GetPrivateProfileString("更新", "不再显示", "false", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("更新", "不再显示", "false", retVal, 0xff, filePath);
             notShow = bool.Parse(retVal.ToString());
             //win32Normal.GetPrivateProfileString("打字统计", "开始日期", DateTime.Now.ToShortDateString(), retVal, 0xff, filePath);
             //_StartDate = retVal.ToString();
@@ -555,7 +548,7 @@ namespace FollowTyper
             //    _todayWordsCount = 0;
             //    win32Normal.WritePrivateProfileString("打字统计", "今天日期", DateTime.Now.ToShortDateString(), filePath);
             //}
-            win32Normal.GetPrivateProfileString("语言选择", "英文显示", "false", retVal, 0xff, filePath);
+            Win32API.GetPrivateProfileString("语言选择", "英文显示", "false", retVal, 0xff, filePath);
             //MessageBox.Show(retVal.ToString());
             if (english_Show = bool.Parse(retVal.ToString()))
             {
@@ -1007,8 +1000,8 @@ namespace FollowTyper
             sendtext.ReadOut();
             Init();
             inputbox = this.textBoxInput.Handle;
-            win32Normal.RegisterHotKey(base.Handle, 100, 0, keyLoad);
-            win32Normal.RegisterHotKey(base.Handle, 99, 0, keySend);//0x73);
+            Win32API.RegisterHotKey(base.Handle, 100, 0, keyLoad);
+            Win32API.RegisterHotKey(base.Handle, 99, 0, keySend);//0x73);
             //labelInfo.Text = "跟打前按F12获得窗口，F4载入文本，亦可自由定制热键";
             this.Text = "易跟打" + Application.ProductVersion.Substring(0, 3);
             GetGroupName();
@@ -1031,8 +1024,8 @@ namespace FollowTyper
         private void Frm_Main_FormClosing(object sender, FormClosingEventArgs e)
         {
             sendtext.Close();
-            win32Normal.UnregisterHotKey(base.Handle, 100);
-            win32Normal.UnregisterHotKey(base.Handle, 99);
+            Win32API.UnregisterHotKey(base.Handle, 100);
+            Win32API.UnregisterHotKey(base.Handle, 99);
             WriteIni();
         }
         private void 基本设置ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1043,8 +1036,8 @@ namespace FollowTyper
             set.EventKeys += new delegateHotKey(set_EventKeys);
             set.eventSend += new delegateSendStyle(set_eventSend);
             set.eventBool += new deleBool(set_eventBool);
-            win32Normal.UnregisterHotKey(base.Handle, 100);
-            win32Normal.UnregisterHotKey(base.Handle, 99);
+            Win32API.UnregisterHotKey(base.Handle, 100);
+            Win32API.UnregisterHotKey(base.Handle, 99);
             set.Show();
 
         }
@@ -1080,8 +1073,8 @@ namespace FollowTyper
             keyGetGN = GetNM;
             keyLoad = Load;
             keySend = Send;
-            win32Normal.RegisterHotKey(base.Handle, 100, 0, keyLoad);
-            win32Normal.RegisterHotKey(base.Handle, 99, 0, keySend);//0x73);
+            Win32API.RegisterHotKey(base.Handle, 100, 0, keyLoad);
+            Win32API.RegisterHotKey(base.Handle, 99, 0, keySend);//0x73);
 
         }
         void set_MyEventSign(string Sign2, string Input2, bool flagVersion2)//将签名与输入法回调
@@ -1273,8 +1266,8 @@ namespace FollowTyper
                     Descrip2 = updateInstance.updateItems.Descriptions[1];
                     Descrip3 = updateInstance.updateItems.Descriptions[2];
 
-                    win32Normal.WritePrivateProfileString("最新版本", "版本号", Version, filepath);
-                    win32Normal.WritePrivateProfileString("最新版本", "下载地址", DownUrl, filepath);
+                    Win32API.WritePrivateProfileString("最新版本", "版本号", Version, filepath);
+                    Win32API.WritePrivateProfileString("最新版本", "下载地址", DownUrl, filepath);
                     return true;
                 }
                 return false;
