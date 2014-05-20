@@ -6,18 +6,18 @@ using Win32;
 
 namespace FollowTyper
 {
-    public delegate void MyDelegateSign(string Sign, string InputMethod, bool flagVersion); //定义该委托的事件    
-    public delegate void delegateHotKey(Keys keyLoad, Keys GetNM, Keys keySend); //定义该委托的事件 
+    public delegate void MyDelegateSign(string sign, string inputMethod, bool flagVersion); //定义该委托的事件    
+    public delegate void delegateHotKey(Keys keyLoad, Keys getNm, Keys keySend); //定义该委托的事件 
     public delegate void delegateSendStyle(bool typesend, bool sigle, bool sendtorich); //定义该委托的事件 
     public delegate void deleBool(bool[] bola); //定义该委托的事件 
 
 
     public partial class Setting : Form
     {
-        string filePath = Application.StartupPath + @"\TyperConfig.ini";
+        readonly string filePath = Application.StartupPath + @"\TyperConfig.ini";
         public event delegateHotKey EventKeys;
-        public event delegateSendStyle eventSend;
-        public event deleBool eventBool;
+        public event delegateSendStyle EventSend;
+        public event deleBool EventBool;
         private static bool[] bolA = new bool[8];
 
         public Setting()
@@ -169,8 +169,8 @@ namespace FollowTyper
         private void Setting_FormClosing(object sender, FormClosingEventArgs e)
         {
             WriteConfigFile();
-            eventBool(bolA);
-            eventSend(cbxTypeSend.Checked, cbxSigleSend.Checked, cbxSendtoRich.Checked);
+            EventBool(bolA);
+            EventSend(cbxTypeSend.Checked, cbxSigleSend.Checked, cbxSendtoRich.Checked);
             EventKeys((Keys)Enum.Parse(typeof(Keys), this.tbxHotKeyGetText.Text), (Keys)Enum.Parse(typeof(Keys), this.tbxHotKeyGetGN.Text), (Keys)Enum.Parse(typeof(Keys), this.tbxHotKeySend.Text));
         }
 
