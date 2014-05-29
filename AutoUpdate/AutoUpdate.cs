@@ -71,52 +71,52 @@ namespace AutoUpdate
         /// <summary>
         /// 检查是否需要更新
         /// </summary>
-        public void checkUpdate()
+public void checkUpdate()
+{
+    try
+    {
+        WebClient webClient = new WebClient();
+        XmlDocument xmlDoc = new XmlDocument();
+        Stream stream = webClient.OpenRead(updateItems.UpdateUrlAddress);
+        xmlDoc.Load(stream);
+        XmlNode node = xmlDoc.SelectSingleNode("Update").FirstChild;
+        if (node.Name == "Soft" && node.Attributes["Name"].Value.ToLower() == SoftName.ToLower())
         {
-            try
+            foreach (XmlNode xml in node)
             {
-                WebClient webClient = new WebClient();
-                XmlDocument xmlDoc = new XmlDocument();
-                Stream stream = webClient.OpenRead(updateItems.UpdateUrlAddress);
-                xmlDoc.Load(stream);
-                XmlNode node = xmlDoc.SelectSingleNode("Update").FirstChild;
-                if (node.Name == "Soft" && node.Attributes["Name"].Value.ToLower() == SoftName.ToLower())
+                switch (xml.Name)
                 {
-                    foreach (XmlNode xml in node)
-                    {
-                        switch (xml.Name)
-                        {
-                            case "version":
-                                updateItems.Version = xml.InnerText;
-                                break;
-                            case "downloadAddress":
-                                updateItems.DownloadAddress = xml.InnerText;
-                                break;
-                            case "descriptions":
-                                updateItems.Descriptions.Add(xml.InnerText);
-                                break;
-                            case "info":
-                                updateItems.Info = xml.InnerText;
-                                break;
-                            case "isStop":
-                                updateItems.IsStop = xml.InnerText;
-                                break;
-                            case "message":
-                                updateItems.Message = xml.InnerText;
-                                break;
-                        }
-                    }
+                    case "version":
+                        updateItems.Version = xml.InnerText;
+                        break;
+                    case "downloadAddress":
+                        updateItems.DownloadAddress = xml.InnerText;
+                        break;
+                    case "descriptions":
+                        updateItems.Descriptions.Add(xml.InnerText);
+                        break;
+                    case "info":
+                        updateItems.Info = xml.InnerText;
+                        break;
+                    case "isStop":
+                        updateItems.IsStop = xml.InnerText;
+                        break;
+                    case "message":
+                        updateItems.Message = xml.InnerText;
+                        break;
                 }
-
-                Version newVersion = new Version(updateItems.Version);
-                Version oldVerson = Assembly.LoadFrom(loadFile).GetName().Version;
-                needUpdate = newVersion.CompareTo(oldVerson) > 0 ? true : false;
-            }
-            catch
-            {
-                //throw new Exception("更新出现错误，请确认网络连接无误后重试！");
             }
         }
+
+        Version newVersion = new Version(updateItems.Version);
+        Version oldVerson = Assembly.LoadFrom(loadFile).GetName().Version;
+        needUpdate = newVersion.CompareTo(oldVerson) > 0 ? true : false;
+    }
+    catch
+    {
+        throw new Exception("更新出现错误，请确认网络连接无误后重试！");
+    }
+}
 
         /// <summary>
         /// 获取要更新的文件

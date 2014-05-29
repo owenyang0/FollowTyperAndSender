@@ -86,6 +86,7 @@
     <EmbeddedResource Include="TypeHis.resx">
       <DependentUpon>TypeHis.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="App.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -125,6 +126,10 @@
     <ProjectReference Include="..\DataOperationUgly\SqlGrades.csproj">
       <Project>{376b43f9-dde4-493b-be74-ecbf28395138}</Project>
       <Name>SqlGrades</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataOperation\DataOperation.csproj">
+      <Project>{C90B71BE-E250-40DD-9E7B-1EF8825FDA7A}</Project>
+      <Name>DataOperation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
