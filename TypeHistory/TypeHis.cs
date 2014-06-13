@@ -50,8 +50,8 @@ namespace FollowTyper
             labAllWords.Text = "总字数：" + GradeStatisticDAL.getTotalWords();
             labkeyCount.Text = "总键数：" + GradeStatisticDAL.getTotalKeys();
             labAverageSpeed.Text = "平均速度：" + GradeStatisticDAL.getAverageSpeed().ToString("F2");
-            labAverageHitKeys.Text = "平均击键：" + GradeStatisticDAL.getAverageHits();
-            labAverageWorkdsLength.Text = "平均码长：" + GradeStatisticDAL.getAverageKeyLong();
+            labAverageHitKeys.Text = "平均击键：" + GradeStatisticDAL.getAverageHits().ToString("F2");
+            labAverageWorkdsLength.Text = "平均码长：" + GradeStatisticDAL.getAverageKeyLong().ToString("F2");
             labTopSpeed.Text = "最高速度：" + GradeStatisticDAL.getTopSpeed();
             labBestHit.Text = "最佳击键：" + GradeStatisticDAL.getBestHits();
             labbestWordsLength.Text = "最佳码长：" + GradeStatisticDAL.getBestKeyLong();
