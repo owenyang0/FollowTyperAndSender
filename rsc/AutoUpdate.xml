@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<Update>
+   <Soft Name="跟打器">
+      <version>2.8.2.0</version> 
+     <downloadAddress>http://115.com/file/beon86km</downloadAddress>
+     <descriptions>1.易跟打器，通过Access数据库记录成绩信息。同时支持64的电脑。
+ </descriptions>
+     <descriptions>2.易跟打跟打历史，着重优化打开软件速度。现在成绩的查看，最快速，轻松。
+     </descriptions>
+     <descriptions>3.增加很多统计信息，修复上次击键成绩统计错误的BUG。</descriptions>
+     <info>最新版本:2.6</info>
+     <isStop>false</isStop>
+     <message>感谢使用易跟打，跟打历史再次优化。大家可将以前跟打器目录下的
+      “Grades.mdb"覆盖新的下载这跟打器里的这个文件，以记录你以前的跟打信息。更新下载地址，请点下面的网址。谢谢！。
+</message>
+</Update>
