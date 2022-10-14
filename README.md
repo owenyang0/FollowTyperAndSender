@@ -36,7 +36,7 @@ the hot key can change by yourself.
 > **其测试数据项如下**  
 > * 速度｜回改｜击键｜码长｜错字｜字数｜键数｜用时｜日期｜
 
-文件结构([树形图](rsc\\文件树形图.txt))
+文件结构([树形图](rsc/文件树形图.txt))
 --------
 
 
@@ -73,9 +73,9 @@ the hot key can change by yourself.
 软件界面
 -------
 跟打器主文件**FollowTyper.exe**  
-![FollowTyper.exe](\rsc/跟打器主界面截图.jpg)  
+![FollowTyper.exe](https://raw.githubusercontent.com/owenyang0/FollowTyperAndSender/master/rsc/%E8%B7%9F%E6%89%93%E5%99%A8%E4%B8%BB%E7%95%8C%E9%9D%A2%E6%88%AA%E5%9B%BE.jpg)  
 跟打历史文件**TypeHistory.exe**  
-![TypeHistory.exe](\rsc/跟打历史截图.jpg)
+![TypeHistory.exe](https://raw.githubusercontent.com/owenyang0/FollowTyperAndSender/master/rsc/%E8%B7%9F%E6%89%93%E5%8E%86%E5%8F%B2%E6%88%AA%E5%9B%BE.jpg)
 
 
 ---------------------------
